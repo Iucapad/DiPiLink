@@ -1,0 +1,22 @@
+@keyframes carAppear{
+  0% {top:80vh;left:30vw;border-radius:100vmax;width:20px;max-height:20px;opacity:0; display:none;}
+  40%{top:70vh;left:50%;width:20px;max-height:20px;}
+  60%{border-radius: 100vmax;}
+  100% {top:0;left:0;border-radius:0px;width:100vw;max-height:100vh;opacity:var(--opac1);display:block;}
+}
+@keyframes disappear{
+  0% {top:0;left:0;border-radius:0px;width:100vmin;max-height:100vmin;opacity:var(--opac1);display:block;}
+  50%{top:70vh;left:50%;width:20px;max-height:20px;}
+  60%{border-radius:100vmax;}
+  100% {top:80vh;left:30vw;border-radius:100vmax;width:20px;max-height:20px;opacity:0; display:none;}
+}
+:root{
+    --opac1:1;
+    --blur:blur(10px);
+    --shadow-medium:0 0 6px var(--gradient-80);
+    --shadow-large:0 0 8px var(--accent-soft);
+    --filter:filter 0.5s;
+  }
+.height-anim{
+   animation:height 1s ease-in-out;
+}

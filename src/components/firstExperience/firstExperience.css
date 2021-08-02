@@ -1,0 +1,81 @@
+.cover{
+  transition: var(--filter);
+}
+#exp h1{
+  margin-left: 4vw;
+}
+#exp p{
+  text-align: center;
+}
+.tip{
+    margin:0;
+    font-family:'ReenieBeanie';
+    text-align: center;
+    max-width: 9.5em;
+    font-size: 1.5em;
+    line-height: 0.9em;
+    font-weight: bold;
+    transition: all 0.5s;
+  }
+  #img-container{
+    transition: var(--filter);
+    position: absolute;
+    bottom: 50%;
+    right: 40%;
+  }
+  #img-container img{
+    animation: appear 2s;
+    transform: translate(75%,40%);
+    width: 55vw;
+    filter:drop-shadow(0px 0px 10px var(--color-grey));
+  }
+  #img-gpd{
+    animation: appear 2s;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #img-gpd img{
+    width: max(300px, 40vw);
+  }
+  ul#controls-gpd{
+    list-style: none;
+  }
+  #controls-gpd{
+    max-width: 45vw;
+    font-weight: bold;
+    margin: 0 0 10vh 3vw;
+    animation: appear 2s;
+    font-size: 1.8em;
+    font-family: 'ReenieBeanie';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  #controls-gpd span{
+    font-weight: normal;
+    display: block;
+    line-height: 0.8em;
+    margin-top: 2vh;
+  }
+  #img-loader{
+    display: none;
+  }
+  @media screen and (max-width: 600px){
+    #img-container{
+      bottom: 60%;
+      right: 50%;
+    }
+    #img-container img{
+      width: 60vw;
+    }
+    #img-gpd img{
+      transform: translateY(-50%);
+    }
+    #controls-gpd{
+      font-weight: normal;
+      margin: 3vh 0;
+    }
+  }

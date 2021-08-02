@@ -1,0 +1,17 @@
+#switch{
+    animation: notify 3s forwards;
+    position: fixed;
+    z-index: 990;
+    left: 50vw;
+    top: 80vh;
+    transform: translate(-50%, -50%);
+    height: 20vh;
+    filter: drop-shadow(0 0 10px #97A0BE);
+}
+@keyframes notify{
+    0% {top: 50vh; opacity:0;max-height:0;}
+    15%{opacity:var(--opac1);}
+    50% {max-height:100vh;}
+    60% {top: 50vh; height: 40vh;}
+    90% {top: 80vh; height: 20vh;}
+  }

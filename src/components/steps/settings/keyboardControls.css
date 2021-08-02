@@ -1,0 +1,32 @@
+#controls-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: fit-content;
+}
+#controls-container p{
+    text-align: right;
+    width: 70px;
+    margin: 0 60px;
+}
+.key{
+    border-radius: 7px;
+    border: 1px var(--accent-soft);
+    background-color: var(--accent-soft);
+    width: 50px;
+    height: 35.5px;
+    margin: 4px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+.key.listening{animation: listening 2s infinite;opacity:0.7;}
+@keyframes listening {
+    0%   {border:2px solid rgb(178, 210, 225);background-color: var(--accent-color);margin: 6.5px;height: 30px;width: 45px;}
+    25%  {border:2px solid transparent;background-color: var(--accent-soft);margin: 4px;height: 35px;width: 50px;}
+    50%  {border:2px solid transparent;background-color: var(--accent-soft);margin: 4px;height: 35px;width: 50px;}
+    100% {border:2px solid rgb(178, 210, 225);background-color: var(--accent-color);margin: 6.5px;height: 30px;width: 45px;}
+  }
