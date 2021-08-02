@@ -9,4 +9,4 @@ DiPi Link is a React.js project to remotely connect to the DiPi Car device. Desi
 ## Links
 
 - The website of the project: [DiPi Hub](https://dipihub.netlify.app/en/#/)🏠
-- API repository: [DiPi Car](https://github.com/Teaflex/dipicar🚗
+- API repository: [DiPi Car](https://github.com/Teaflex/dipicar)🚗
