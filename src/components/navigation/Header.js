@@ -76,7 +76,7 @@ class UiHeader extends Component {
         bridge:
             <>            
                 <img width="50" height="50" className="tabNavigation" id="tabTarget" alt="" onClick={this.handleClick}/>
-                <Tab state={this.props.state.currentTab} id="carTab" text={(globalState.hostname && globalState.hostname.length<=15 && globalState.hostname!=="raspberrypi")?globalState.hostname:intl.formatMessage({id:"tab.carTab"})} handleClick={()=>this.handleClick} appState={this.props.appState}></Tab>
+                <Tab state={this.props.state.currentTab} id="carTab" text={(globalState.hostname && globalState.hostname.length<=15 && globalState.hostname!=="raspberrypi")?globalState.hostname:intl.formatMessage({id:"tab.carTab"})} handleClick={this.handleClick} appState={this.props.appState}></Tab>
                 <Tab state={this.props.state.currentTab} id="statsTab" text={intl.formatMessage({id:"tab.statsTab"})} handleClick={this.handleClick} appState={this.props.appState}></Tab>
                 <Tab state={this.props.state.currentTab} id="confTab" text={intl.formatMessage({id:"tab.setTab"})} handleClick={this.handleClick} appState={this.props.appState}></Tab>
                 <Tab state={this.props.state.currentTab} id="aboutTab" text={intl.formatMessage({id:"tab.aboutTab"})} handleClick={this.handleClick} appState={this.props.appState}></Tab>

@@ -145,7 +145,7 @@ export default class FirstExperience extends Component{
                 return(
                     <>
                         <div key="01" id="img-container" style={this.state.filter?{filter:"blur(1px)"}:null}><img draggable="false" src={asset} alt=""/></div>
-                        <div key="0" className="height-anim" style={{transition:'all 0.4s',position:'absolute',bottom:0,right:0,maxWidth:'50vw',textAlign:'center',padding:(this.state.edge!==3)?'0 5vh 10vh 0':'10px'}}>
+                        <div key="0" className="height-anim content-step" style={{transition:'all 0.4s',position:'absolute',bottom:0,right:0,maxWidth:'55vw',textAlign:'center',padding:(this.state.edge!==3)?'0px 3vmin 8vmin 0px':'10px'}}>
                             <h1 style={{display:(this.state.edge!==3)?'block':'none'}}><FormattedMessage id={"exp.welcome"}/></h1>
                             <p style={{display:(this.state.edge!==3)?'block':'none'}}><FormattedMessage id={"exp.ini"}/></p>
                             <div id="focusableElements">
@@ -159,7 +159,7 @@ export default class FirstExperience extends Component{
                 return(
                     <>
                         <div key="01" id="img-container" style={this.state.filter?{filter:"blur(1px)"}:null}><img draggable="false" src={asset} alt=""/></div>
-                        <div key="1" className="height-anim" style={{transition:'all 0.4s',position:'absolute',bottom:0,right:0,maxWidth:'50vw',textAlign:'center',padding:(this.state.edge!==3)?'0 5vh 10vh 0':'10px'}}>
+                        <div key="1" className="height-anim content-step" style={{transition:'all 0.4s',position:'absolute',bottom:0,right:0,maxWidth:'55vw',textAlign:'center',padding:(this.state.edge!==3)?'0px 3vmin 8vmin 0px':'10px'}}>
                             <h1 style={{display:(this.state.edge!==3)?'block':'none'}}><FormattedMessage id={"exp.a1"}/></h1>
                             <p style={{display:(this.state.edge!==3)?'block':'none'}}><FormattedMessage id={"exp.b1"}/></p>
                             <div id="focusableElements">
@@ -174,7 +174,7 @@ export default class FirstExperience extends Component{
                     <>
                         <div id="img-gpd"><img draggable="false" src={this.props.inputType==="gamepad"?gamepad:this.props.inputType==="touch"?touch:dflt} alt=""/></div>
                         {this.getControls()}
-                        <div key="2" className="height-anim" style={{transition:'all 0.4s',position:'absolute',bottom:0,right:0,maxWidth:'40vw',textAlign:'center',padding:(this.state.edge!==3)?'0 3vw 10vh 0':'10px'}}>
+                        <div key="2" className="height-anim content-step" style={{transition:'all 0.4s',position:'absolute',bottom:0,right:0,maxWidth:'40vw',textAlign:'center',padding:(this.state.edge!==3)?'0 3vmin 8vmin 0':'10px'}}>
                             <h1 style={{display:(this.state.edge!==3)?'block':'none'}}><FormattedMessage id={"exp.a2"}/></h1>
                             <p style={{display:(this.state.edge!==3)?'block':'none'}}><FormattedMessage id={"exp.b2"}/></p>
                             <div id="focusableElements">
@@ -188,7 +188,7 @@ export default class FirstExperience extends Component{
             return(
                 <>
                     <div key="03" id="img-container" style={this.state.filter?{filter:"blur(1px)"}:null}><img draggable="false" src={asset2} alt=""/></div>
-                    <div key="3" className="height-anim" style={{transition:'all 0.4s',position:'absolute',bottom:0,right:0,maxWidth:'50vw',textAlign:'center',padding:(this.state.edge!==3)?'0 5vh 10vh 0':'10px'}}>
+                    <div key="3" className="height-anim content-step" style={{transition:'all 0.4s',position:'absolute',bottom:0,right:0,maxWidth:'55vw',textAlign:'center',padding:(this.state.edge!==3)?'0px 3vmin 8vmin 0px':'10px'}}>
                         <h1 style={{display:(this.state.edge!==3)?'block':'none'}}><FormattedMessage id={"exp.a3"}/></h1>
                         <p style={{display:(this.state.edge!==3)?'block':'none'}}><FormattedMessage id={"exp.b3"}/></p>
                         <div id="focusableElements">
@@ -202,7 +202,7 @@ export default class FirstExperience extends Component{
                 return(
                     <>
                         <div key="04" id="img-container" style={this.state.filter?{filter:"blur(1px)"}:null}><img draggable="false" src={asset3} alt=""/></div>
-                        <div key="4" className="height-anim" style={{transition:'all 0.4s',position:'absolute',bottom:0,right:0,maxWidth:'50vw',textAlign:'center',padding:(this.state.edge!==3)?'0 5vh 10vh 0':'10px'}}>
+                        <div key="4" className="height-anim content-step" style={{transition:'all 0.4s',position:'absolute',bottom:0,right:0,maxWidth:'55vw',textAlign:'center',padding:(this.state.edge!==3)?'0px 3vmin 8vmin 0px':'10px'}}>
                             <h1 style={{display:(this.state.edge!==3)?'block':'none'}}><FormattedMessage id={"exp.a4"}/></h1>
                             <p style={{display:(this.state.edge!==3)?'block':'none'}}><FormattedMessage id={"exp.b4"}/></p>
                             <div id="focusableElements">
@@ -215,7 +215,7 @@ export default class FirstExperience extends Component{
 
             default:
                 return(
-                    <div key="d" className="height-anim" style={{transition:'all 0.4s',position:'absolute',bottom:0,right:0,maxWidth:'50vw',textAlign:'center',padding:(this.state.edge!==3)?'0 10vw 20vh 0':'10px'}}>
+                    <div key="d" className="height-anim content-step" style={{transition:'all 0.4s',position:'absolute',bottom:0,right:0,maxWidth:'55vw',textAlign:'center',padding:(this.state.edge!==3)?'0 10vw 20vh 0':'10px'}}>
                         <button onClick={()=>this.setState({step:0})}><FormattedMessage id={"btn.reset"}/></button>
                     </div>
                 );

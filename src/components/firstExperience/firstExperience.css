@@ -2,7 +2,7 @@
   transition: var(--filter);
 }
 #exp h1{
-  margin-left: 4vw;
+  margin-left: 0;
 }
 #exp p{
   text-align: center;
@@ -63,6 +63,12 @@
   #img-loader{
     display: none;
   }
+  .content-step{
+    min-width: 175px;
+  }
+  .content-step div{
+    display: inline-flex;
+  }
   @media screen and (max-width: 600px){
     #img-container{
       bottom: 60%;
@@ -75,7 +81,15 @@
       transform: translateY(-50%);
     }
     #controls-gpd{
+      padding-left: 8px;
       font-weight: normal;
       margin: 3vh 0;
+    }
+    #exp h1{
+      font-size: 24px;
+    }
+    #exp p{
+      line-height: 125%;
+      margin: 0 2px 15px 2px;
     }
   }
