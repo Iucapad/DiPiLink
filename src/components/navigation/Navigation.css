@@ -5,7 +5,7 @@
     100% {filter: none;}
 }
 header{
-    transition:margin 0.2s;
+    transition:margin 0.25s;
     padding-top: env(safe-area-inset-top);
     top: 0;
     position: sticky;
@@ -44,17 +44,17 @@ header{
 }
 .tab{position:absolute;display:flex;flex-flow:row;list-style-type:none;user-select:none;overflow:hidden;padding:0;padding-left:env(safe-area-inset-left);}
 .tab>.item{cursor:default;outline:none;float:left;white-space:nowrap;}
-.tab.edge{padding-top:env(safe-area-inset-top);flex-flow:column;width:50px;height:50px;transition:width ease-in-out 0.15s;background:linear-gradient(45deg,var(--accent-soft) 0%,var(--gradient-30) 100%);position:absolute;top:0;}
-.edge>.item>span{left:-250px;float:none;text-align:left;position:relative;transition:left 0.2s;}
+.tab.edge{padding-top:env(safe-area-inset-top);flex-flow:column;width:50px;height:50px;transition:width ease-in-out 0.2s;background:linear-gradient(45deg,var(--accent-soft) 0%,var(--gradient-30) 100%);position:absolute;top:0;}
+.edge>.item>span{left:-250px;float:none;text-align:left;position:relative;transition:left 0.25s;}
 .item{display:inline-block;text-align:center;font-size:1.25em;padding:4px 2px;color:var(--color-text);text-decoration:none;}
 .edge.open{width:250px;height:100vh;box-shadow:0 0 25px black;}
-.edge.open>.item>span{left:8px;}
+.edge.open>.item>span{left:4px;}
 .item:hover:not(.active){background-color:var(--color-component);filter:saturate(2);}
 .active{animation:selection 0.5s forwards;color: var(--accent-color);outline:none;}
 .item:focus-visible{text-shadow:0 0 1px var(--accent-soft);}
 .item{position:relative;display: flex;align-items: center;margin:3px 10px;border-radius:5px;}
 .edge .item{margin:0 3px;padding:6px 2px;}
-.ind{border-radius:1px;width:2px;height:2px;background:transparent;transition:width 0.2s, height 0.2s}
+.ind{border-radius:1px;width:2px;height:2px;background:transparent;transition:width 0.15s, height 0.15s}
 .item:hover:not(.active) .ind{background: var(--accent-soft);}
 .tab:not(.edge) .ind{position:absolute;bottom:0;left:50%;transform:translate(-50%);}
 .tab:not(.edge) .item:hover:not(.active) .ind{width:90%;}
@@ -62,3 +62,4 @@ header{
 .edge .ind{position:relative;margin-right:1px;height:0;}
 .edge>.item:hover:not(.active) .ind{width:2px;height:16px;background: var(--accent-soft);}
 .edge>.active .ind{width:2px;height:16px;background: var(--accent-color);}
+.edge:not(.open) .ind{height: 0;}

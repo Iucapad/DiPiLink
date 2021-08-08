@@ -6,7 +6,7 @@ import {injectIntl,FormattedMessage} from 'react-intl';
 
 const HowToPage = ({intl}) => {
     return(
-        <div className="uiCard" style={{border:"3px solid #103560",textAlign:"center"}}>
+        <div className="uiCard" style={{border:"3px solid #f07332",textAlign:"center"}}>
             {
                 (localStorage.getItem("dpl_appSettings")===null?
                     <>

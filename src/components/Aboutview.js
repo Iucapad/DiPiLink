@@ -29,7 +29,7 @@ const ImageView = () =>{
                 DiPi Link {VERSION}
             </p>
             <p>
-                DiPi - ©️ 2021 Saison
+                DiPi - © 2021 Saison
             </p>
         </div>
     );

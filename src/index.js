@@ -7,10 +7,12 @@ import { Provider } from 'react-globally';
 import {IntlProvider} from "react-intl";
 import {displayLanguage} from './services/clientService';
 import locale_en from "./localization/en.json";
+import locale_nl from "./localization/nl.json";
 import locale_fr from "./localization/fr.json";
 
 const data = {
   "en":locale_en,
+  "nl":locale_nl,
   "fr":locale_fr
 }
 const initialState = {

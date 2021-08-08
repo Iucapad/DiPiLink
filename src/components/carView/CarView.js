@@ -1,22 +1,22 @@
 import React, {Component,Suspense,lazy} from 'react';
-import TPArea from './touchpad/tpArea';
-import MaxSpeedSlider from './steps/settings/maxSpeed/MaxSpeedSlider';
+import TPArea from '../touchpad/tpArea';
+import MaxSpeedSlider from '../steps/settings/maxSpeed/MaxSpeedSlider';
 import * as  WSAvcPlayer from 'dipistream/http-live-player';
-import {api,socket,appSettings} from '../services/clientService';
-import {statsService} from '../services/statsService';
-import {controls} from '../services/controlsConnector';
+import {api,socket,appSettings} from '../../services/clientService';
+import {statsService} from '../../services/statsService';
+import {controls} from '../../services/controlsConnector';
 
 import { withGlobalState } from 'react-globally';
 import './carView.css';
 
-const FirstExperience = lazy(()=>import('./firstExperience/FirstExperience.js'));
+const FirstExperience = lazy(()=>import('../firstExperience/FirstExperience.js'));
 
 class CarView extends Component{
     constructor(props){
         super(props);
-        this.state={plr:null,exp:false};
-        this.playtime=undefined;
-        this.timeout=undefined;
+        this.state = {plr:null, exp:false};
+        this.playtime = undefined;
+        this.timeout = undefined;
     }
     startLoop = () => {
         this.timeout = setInterval(() => {
@@ -29,7 +29,7 @@ class CarView extends Component{
         clearInterval(this.timeout);
         statsService.resetLoop();
     }
-    launchStream(){
+    launchStream = () => {
         try{
             let canvas = document.getElementById("carView").querySelector('canvas');
             const url = api.get(true);
@@ -45,7 +45,7 @@ class CarView extends Component{
             alert("Impossible de lancer le stream: "+err);
         }
     }
-    endExp(){
+    endExp = () => {
         this.setState({exp:false});
         setTimeout(()=>{this.launchStream()},1000);
     }
@@ -81,14 +81,15 @@ class CarView extends Component{
     render(){
         return(
             <>
-            {(this.state.exp)&&(this.props.visible.opacity!==0)?
+            {(this.state.exp)&&(this.props.visible.opacity!==0) ?
             <Suspense fallback={null}>
                 <FirstExperience inputType={this.props.inputType} endExp={()=>this.endExp()}/>
-            </Suspense>:
+            </Suspense>
+            :
             <div id={this.props.id} style={this.props.visible}>
                 <canvas/>
-                {this.props.inputType==="touch" && <div id="gamepad"><TPArea></TPArea></div>}
-                {(!appSettings.getValue("minimalUi") && this.props.inputType!=="gamepad")&&<MaxSpeedSlider></MaxSpeedSlider>}
+                {this.props.inputType==="touch" ? <div id="gamepad"><TPArea/></div>:null}
+                {(!appSettings.getValue("minimalUi") && this.props.inputType!=="gamepad")?<MaxSpeedSlider/>:null}
             </div>
             }
             

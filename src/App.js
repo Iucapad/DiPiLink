@@ -15,7 +15,7 @@ import AnimatedBackground from './components/background/AnimatedBackground';
 import HowToPage from './components/steps/HowToPage';
 import {Button,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle} from '@material-ui/core';
 
-const CarView = lazy(()=>import('./components/CarView'));
+const CarView = lazy(()=>import('./components/carView/CarView'));
 const StatisticsView = lazy(()=>import('./components/StatisticsView'));
 const CapableTheme = React.lazy(() => import('./capable/Capable'));
 const devCapable = appSettings.getAppValue("devCapable");
