@@ -10,7 +10,7 @@
 .line{
   animation: appear 2s;
   transition: top 0.4s, left 0.4s;
-  position: absolute;
+  position: fixed;
   border: solid 2px #000;
   border-color: transparent transparent #000 #000;
   border-radius: 0 0 0 100%;
@@ -25,11 +25,11 @@
     font-weight: bold;
     transition:  top 0.4s;
     animation: appear 2s;
-    position: absolute;
+    position: fixed;
   }
   #img-container{
     transition: var(--filter);
-    position: absolute;
+    position: fixed;
     bottom: 50%;
     right: 40%;
   }
@@ -60,7 +60,7 @@
     animation: appear 2s;
     font-size: 1.8em;
     font-family: 'ReenieBeanie';
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
   }
@@ -76,7 +76,7 @@
   .content-step{
     min-width: 175px;
     transition:all 0.4s;
-    position:absolute;
+    position:fixed;
     bottom:0;
     right:0;
     max-width:55vw;
@@ -101,10 +101,10 @@
       font-weight: normal;
       margin: 3vh 0;
     }
-    #exp h1{
+    .content-step h1{
       font-size: 24px;
     }
-    #exp p{
+    .content-step p{
       line-height: 125%;
       margin: 0 2px 15px 2px;
     }

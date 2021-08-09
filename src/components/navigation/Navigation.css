@@ -6,7 +6,7 @@
 }
 header{
     transition:margin 0.25s;
-    padding-top: env(safe-area-inset-top);
+    padding-top: var(--offsetTop);
     top: 0;
     position: sticky;
     height: 50px;
@@ -21,7 +21,7 @@ header{
     border-radius: 0 0 20px 20px;
     position: fixed;
     top: 0;
-    height: env(safe-area-inset-top);
+    height: var(--offsetTop);
     width: 100%;
     z-index: 999;
   }
@@ -44,7 +44,7 @@ header{
 }
 .tab{position:absolute;display:flex;flex-flow:row;list-style-type:none;user-select:none;overflow:hidden;padding:0;padding-left:env(safe-area-inset-left);}
 .tab>.item{cursor:default;outline:none;float:left;white-space:nowrap;}
-.tab.edge{padding-top:env(safe-area-inset-top);flex-flow:column;width:50px;height:50px;transition:width ease-in-out 0.2s;background:linear-gradient(45deg,var(--accent-soft) 0%,var(--gradient-30) 100%);position:absolute;top:0;}
+.tab.edge{padding-top:var(--offsetTop);flex-flow:column;width:50px;height:50px;transition:width ease-in-out 0.2s;background:linear-gradient(45deg,var(--accent-soft) 0%,var(--gradient-30) 100%);position:absolute;top:0;}
 .edge>.item>span{left:-250px;float:none;text-align:left;position:relative;transition:left 0.25s;}
 .item{display:inline-block;text-align:center;font-size:1.25em;padding:4px 2px;color:var(--color-text);text-decoration:none;}
 .edge.open{width:250px;height:100vh;box-shadow:0 0 25px black;}

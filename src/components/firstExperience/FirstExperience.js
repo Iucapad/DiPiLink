@@ -14,7 +14,7 @@ const controls = appSettings.getAppValue("kbLayout");
 export default class FirstExperience extends Component{
     constructor(props){
         super(props);
-        this.state={filter:false,car:[0,0],stats:[0,0],conf:[0,0],nav:[0,0],edge:true,step:0};
+        this.state={filter:false,car:[0,0],stats:[0,0],conf:[0,0],nav:[0,0],edge:1,step:0};
     }
     positionElements(){
         const main = document.getElementById("maintab");
@@ -23,32 +23,36 @@ export default class FirstExperience extends Component{
         const conf=main.childNodes[3].getBoundingClientRect();
         if (main.classList.contains("edge")){
             if (main.classList.contains("open")) {
-                this.setState({filter:true});
-                this.setState({edge:3});
-                this.setState({car:[car.left+90,car.top+10]});
-                this.setState({stats:[stats.left+90,stats.top+10]});
-                this.setState({conf:[conf.left+90,conf.top+10]});
+                this.setState({
+                    filter:true,
+                    edge:3,
+                    car:[car.left+90,car.top+10],
+                    stats:[stats.left+90,stats.top+10],
+                    conf:[conf.left+90,conf.top+10]
+                });
             }
             else {
-                this.setState({filter:false});
-                const nav=main.getBoundingClientRect();
-                this.setState({nav:[nav.left,nav.top]});
-                this.setState({edge:1});
+                this.setState({
+                    filter:false,
+                    nav:[0,parseInt(getComputedStyle(document.documentElement).getPropertyValue("--offsetTop"), 10)],
+                    edge:1
+                });
             }
         }else{
-            this.setState({filter:false});
-            this.setState({edge:2});
-            this.setState({car:[car.left,car.top-10]});
-            this.setState({stats:[stats.left,stats.top-10]});
-            this.setState({conf:[conf.left,conf.top-10]});
+            this.setState({
+                filter:false,
+                edge:2,
+                car:[car.left,car.top-10],
+                stats:[stats.left,stats.top-10],
+                conf:[conf.left,conf.top-10]
+            });
         }
     }
     shouldComponentUpdate(nProps, nState){
         return !(JSON.stringify(nState) === JSON.stringify(this.state) && this.props.inputType === nProps.inputType);
     }
     componentDidMount(){
-        setInterval(()=>this.positionElements(),400);
-        this.positionElements();        
+        setInterval(()=>this.positionElements(),350);
     }
     getTips(){
         switch (this.state.step){
@@ -176,7 +180,7 @@ export default class FirstExperience extends Component{
                     <>
                         <div id="img-gpd"><img draggable="false" src={this.props.inputType==="gamepad"?gamepad:this.props.inputType==="touch"?touch:dflt} alt=""/></div>
                         {this.getControls()}
-                        <div key="2" className="height-anim content-step" style={{transition:'all 0.4s',position:'absolute',bottom:0,right:0,maxWidth:'40vw',textAlign:'center',padding:(this.state.edge!==3)?'0 3vmin 8vmin 0':'10px'}}>
+                        <div key="2" className="height-anim content-step" style={{transition:'all 0.4s',position:'fixed',bottom:0,right:0,maxWidth:'40vw',textAlign:'center',padding:(this.state.edge===3)?'10px':'0 3vmin 8vmin 0'}}>
                             <h1 style={{display:(this.state.edge===3)?'none':'block'}}><FormattedMessage id={"exp.a2"}/></h1>
                             <p style={{display:(this.state.edge===3)?'none':'block'}}><FormattedMessage id={"exp.b2"}/></p>
                             <div id="focusableElements">
