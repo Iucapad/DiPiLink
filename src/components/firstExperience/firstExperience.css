@@ -7,6 +7,14 @@
 #exp p{
   text-align: center;
 }
+.line{
+  animation: appear 2s;
+  transition: top 0.4s, left 0.4s;
+  position: absolute;
+  border: solid 2px #000;
+  border-color: transparent transparent #000 #000;
+  border-radius: 0 0 0 100%;
+}
 .tip{
     margin:0;
     font-family:'ReenieBeanie';
@@ -15,7 +23,9 @@
     font-size: 1.5em;
     line-height: 0.9em;
     font-weight: bold;
-    transition: all 0.5s;
+    transition:  top 0.4s;
+    animation: appear 2s;
+    position: absolute;
   }
   #img-container{
     transition: var(--filter);
@@ -27,7 +37,7 @@
     animation: appear 2s;
     transform: translate(75%,40%);
     width: 55vw;
-    filter:drop-shadow(0px 0px 10px var(--color-grey));
+    filter:drop-shadow(0px 0px 5px var(--color-grey));
   }
   #img-gpd{
     animation: appear 2s;
@@ -65,6 +75,12 @@
   }
   .content-step{
     min-width: 175px;
+    transition:all 0.4s;
+    position:absolute;
+    bottom:0;
+    right:0;
+    max-width:55vw;
+    text-align:center;
   }
   .content-step div{
     display: inline-flex;
