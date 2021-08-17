@@ -106,5 +106,14 @@
     "exp.a3":"Paramétrez l'expérience",
     "exp.b3":"Vous pourrez personnaliser l'application, le nom ou le comportement du véhicule comme vous le souhaitez.",
     "exp.a4":"C'est parti",
-    "exp.b4":"Vous êtes fin prêt. Lancez-vous et découvrez sans plus attendre la conduite !"
+    "exp.b4":"Vous êtes fin prêt. Lancez-vous et découvrez sans plus attendre la conduite !",
+    "stat.license":"PERMIS DE CONDUIRE",
+    "stat.id":"ID :",
+    "stat.gametime":"Temps de conduite :",
+    "stat.details":"Détails",
+    "stat.connection":"Heure de connexion :",
+    "stat.session":"Session en cours :",
+    "stat.input":"Mode d'interaction préféré :",
+    "date.h_m":"{h}h {m}m",
+    "date.m":"{m} min"
 }

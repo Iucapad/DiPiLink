@@ -15,19 +15,6 @@ class CarView extends Component{
     constructor(props){
         super(props);
         this.state = {plr:null, exp:false};
-        this.playtime = undefined;
-        this.timeout = undefined;
-    }
-    startLoop = () => {
-        this.timeout = setInterval(() => {
-            this.playtime++;
-            statsService.updateStat("playtime",this.playtime);
-          }, 60000);
-          statsService.startLoop();
-    }
-    resetLoop = () => {
-        clearInterval(this.timeout);
-        statsService.resetLoop();
     }
     launchStream = () => {
         try{
@@ -35,11 +22,13 @@ class CarView extends Component{
             const url = api.get(true);
             const player = new WSAvcPlayer(canvas,"webgl",1,35);
             this.setState({plr:player});
+            controls.setActive(true);
+            statsService.setConnection();
+            statsService.startTimer();
             player.connect(url);
             setTimeout(()=>{
             socket.set(player.ws);
             player.playStream();
-            controls.setActive(true);
             },2000)
         }catch(err){
             alert("Impossible de lancer le stream: "+err);
@@ -47,12 +36,11 @@ class CarView extends Component{
     }
     endExp = () => {
         this.setState({exp:false});
-        setTimeout(()=>{this.launchStream()},1000);
+        setTimeout(()=>this.launchStream(),1000);
     }
     componentDidMount(){
         if (!this.props.globalState.exp){
-            this.launchStream();
-            this.playtime=statsService.getStat("playtime");
+            statsService.setConnection();//this.launchStream();
         }else{
             this.setState({exp:true});
         }
@@ -60,13 +48,13 @@ class CarView extends Component{
     shouldComponentUpdate(nProps,nState){
         if (this.props.visible.opacity!==nProps.visible.opacity) {
             try{
-                if (this.props.visible.opacity===0) {
-                    controls.setActive(true);
-                    this.startLoop();
+                if (nProps.visible.opacity===0) {
+                    controls.setActive(false);
+                    statsService.pauseTimer();
                 }
                 else {
-                    controls.setActive(false);
-                    this.resetLoop();
+                    controls.setActive(true);
+                    statsService.startTimer();
                 }
                 controls.updateSettings();
                 this.state.plr.pauseStream();
@@ -81,19 +69,19 @@ class CarView extends Component{
     render(){
         return(
             <>
-            {(this.state.exp)&&(this.props.visible.opacity!==0) ?
-            <Suspense fallback={null}>
-                <FirstExperience inputType={this.props.inputType} endExp={()=>this.endExp()}/>
-            </Suspense>
-            :
-            <div id={this.props.id} style={this.props.visible}>
-                <canvas/>
-                {this.props.inputType==="touch" ? <div id="gamepad"><TPArea/></div>:null}
-                {(!appSettings.getValue("minimalUi") && this.props.inputType!=="gamepad")?<MaxSpeedSlider/>:null}
-            </div>
-            }
-            
-        </>);
+                {this.state.exp && this.props.visible.opacity!==0 ?
+                <Suspense fallback={null}>
+                    <FirstExperience inputType={this.props.inputType} endExp={()=>this.endExp()}/>
+                </Suspense>
+                :
+                <div id={this.props.id} style={this.props.visible}>
+                    <canvas/>
+                    {this.props.inputType==="touch" ? <div id="gamepad"><TPArea/></div>:null}
+                    {!appSettings.getValue("minimalUi") && this.props.inputType!=="gamepad"?<MaxSpeedSlider/>:null}
+                </div>
+                }
+                
+            </>);
     }
 };
 export default withGlobalState(CarView);

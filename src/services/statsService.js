@@ -1,44 +1,69 @@
-import {api,appSettings} from './clientService';
+import {api, appSettings} from './clientService';
+
+const defaultValues = {
+    connection:0,
+    lastConnection:Date.now(),
+    gameTime:0,
+    inputTime:{
+        default:0,
+        touch:0,
+        gamepad:0
+        }
+    };
 
 class StatsService {
     constructor() {
-        this.currentStats=undefined;
-        this.tempStats=undefined;
-        this.pushTimeout=undefined;
+        this.currentStats = {...defaultValues};
+        this.updateEvent = undefined;
+        this.pushTimeout = undefined;
+        this.inputType = undefined;
+        this.time = {play: 0, total: 0};
     }
-    getStat = (key) => {
-        if (!this.currentStats) return this.defaultStats[key];
-        return this.currentStats[key];
+    updateTimer = () => {
+        this.time.play++;
+        this.updateEvent = setTimeout(this.updateTimer,10000);
     }
+
+    updateInput = nInput => this.inputType = nInput;
+
+    setConnection = () => {
+        this.fetchStats();
+        this.currentStats.connection = Date.now();
+        this.pushTimeout = setTimeout(this.loop,60000);
+    }
+
+    getTimer = (play) => play ? this.time.play/10 : this.time.total+this.time.play/10;
+
+    startTimer = () => setTimeout(this.updateTimer,10000);
+
+    pauseTimer = () => clearTimeout(this.updateEvent);
+
+    getStat = key =>  this.currentStats ? this.currentStats[key] : this.defaultStats[key];
+    
     fetchStats = () => {
         api.request(`/stats/${appSettings.id}`,"GET").then((res) =>{
             return res.json();
-        }).then((data)=>
+        }).then(data=>
             {
-                this.currentStats=data;
+                this.time.total = data.gameTime;
+                this.currentStats = {...this.currentStats, ...data};
             }
         )
     }
-    updateStat = (key,value) => {
-        if (!this.currentStats) this.fetchStats();
-        else this.tempStats[key]=value;
-    }
+
     pushStats = () => {
-        if (this.currentStats && this.tempStats){
-            this.currentStats=this.tempStats;
-            api.request(`/stats/${appSettings.id}`,"PUT",this.tempStats).then(() =>{
+        if (this.currentStats){
+            api.request(`/stats/${appSettings.id}`,"PUT",this.currentStats).then(() =>{
                 console.log("stats sent");
-            }).catch((e)=>{
+            }).catch(e=>{
                 console.log(e)
             });
         }
     }
-    startLoop = () => {
-        if (!this.currentStats) this.fetchStats();
-        if (this.tempStats) this.pushStats();
-        this.pushTimeout=setTimeout(this.loop,60000);
+
+    loop = () => {
+        this.pushTimeout = setTimeout(this.loop,60000);
     }
-    resetLoop = () => clearTimeout(this.pushTimeout);
-    get defaultStats(){return{firstco:Date.now(),lastco:Date.now(),playtime:0}}
+    get defaultStats(){return defaultValues}
 }
 export const statsService = new StatsService();

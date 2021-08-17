@@ -101,11 +101,33 @@
       font-weight: normal;
       margin: 3vh 0;
     }
+    #controls-gpd li{
+      margin-left:  1em;
+    }
     .content-step h1{
       font-size: 24px;
     }
     .content-step p{
       line-height: 125%;
       margin: 0 2px 15px 2px;
+    }
+  }
+  @media screen and (max-height:500px){
+    #img-container{
+      right: 5vw;
+    }
+    #img-container img {
+      width: 50vh;
+      transform: unset;
+    }
+    #img-gpd{
+      position: fixed;
+      top: 2vh;
+      right: 5vw;
+      width: 60vh;
+      height: 60vh;
+    }
+    #img-gpd img{
+      transform: unset;
     }
   }

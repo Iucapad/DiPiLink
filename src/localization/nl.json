@@ -105,6 +105,15 @@
     "exp.b2":"Here are the base controls for the vehicle.",
     "exp.a3":"Customize the experience",
     "exp.b3":"You'll be able to personalize the app, edit the name and change the behavior of the car as you want.",
-    "exp.a4":"Ready",
-    "exp.b4":"You're now ready. Let's go and discover the driving experience!"
+    "exp.a4":"Klaar",
+    "exp.b4":"You're now ready. Let's go and discover the driving experience!",
+    "stat.license":"RIJBEWIJS",
+    "stat.id":"ID :",
+    "stat.gametime":"Totale rijtijd :",
+    "stat.details":"Details",
+    "stat.connection":"Verbindingstijd :",
+    "stat.session":"Huidige sessie :",
+    "stat.input":"Geprefereerde interactiemethode :",
+    "date.h_m":"{h}u {m}m",
+    "date.m":"{m} min"
 }

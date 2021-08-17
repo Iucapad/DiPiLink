@@ -13,11 +13,12 @@ import Slideview from './components/Slideview';
 import Aboutview from './components/Aboutview';
 import AnimatedBackground from './components/background/AnimatedBackground';
 import HowToPage from './components/steps/HowToPage';
+import { statsService } from './services/statsService';
 import {Button,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle} from '@material-ui/core';
 
 const CarView = lazy(()=>import('./components/carView/CarView'));
-const StatisticsView = lazy(()=>import('./components/StatisticsView'));
-const CapableTheme = React.lazy(() => import('./capable/Capable'));
+const StatisticsView = lazy(()=>import('./components/statistics/StatisticsView'));
+const CapableTheme = lazy(() => import('./capable/Capable'));
 const devCapable = appSettings.getAppValue("devCapable");
 
 class App extends Component {
@@ -47,7 +48,7 @@ class App extends Component {
     }
   }
   componentDidUpdate(pProps,pState){
-    if (pState.inputType===this.state.inputType) return;
+    if (pState.inputType===this.state.inputType) return statsService.updateInput(this.state.inputType);
     if (this.state.inputType==="default") {gpconnector.active=false;kbconnector.active=true;}
     else if (this.state.inputType==="gamepad") {gpconnector.active=true;kbconnector.active=false;}
     else{gpconnector.active=false;kbconnector.active=false;}
