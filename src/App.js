@@ -48,7 +48,7 @@ class App extends Component {
     }
   }
   componentDidUpdate(pProps,pState){
-    if (pState.inputType===this.state.inputType) return statsService.updateInput(this.state.inputType);
+    if (pState.inputType !== this.state.inputType) return statsService.updateInput(this.state.inputType);
     if (this.state.inputType==="default") {gpconnector.active=false;kbconnector.active=true;}
     else if (this.state.inputType==="gamepad") {gpconnector.active=true;kbconnector.active=false;}
     else{gpconnector.active=false;kbconnector.active=false;}

@@ -22,12 +22,12 @@ class StatisticsView extends Component {
         return h>0 ? <FormattedMessage id={"date.h_m"} values={{h:h,m:Math.floor(m)}}/> : <FormattedMessage id={"date.m"} values={{m:parseInt(m) ? m : m.toPrecision(1)}}/>;
     }
     getHour = () => {
-        const h = new Date(statsService.getStat("connection")).getHours();
-        const m = new Date(statsService.getStat("connection")).getMinutes();
+        const h = new Date(statsService.getStat("clientStats").connection).getHours();
+        const m = new Date(statsService.getStat("clientStats").connection).getMinutes();
         return `${(h>9)?`${h}`:`0${h}`}:${(m>9)?`${m}`:`0${m}`}`;
     }
     getPrefered = () => {
-        const st = statsService.getStat("inputTime");
+        const st = statsService.getStat("clientStats").inputTime;
         return Object.keys(st).map((key) => [key, st[key]]).reduce((acc, v) => v[1] > acc[1] ? v : acc)[0];
     }
     render(){
