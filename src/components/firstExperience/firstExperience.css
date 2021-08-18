@@ -29,15 +29,22 @@
   }
   #img-container{
     transition: var(--filter);
+    transform: translate(75%,40%);
     position: fixed;
     bottom: 50%;
     right: 40%;
   }
-  #img-container img{
+  #img-container img:not(.status-container){
     animation: appear 2s;
-    transform: translate(75%,40%);
     width: 55vw;
     filter:drop-shadow(0px 0px 5px var(--color-grey));
+  }
+  #img-container .status-container{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: auto;
+    height: 60%;
   }
   #img-gpd{
     animation: appear 2s;
@@ -90,7 +97,7 @@
       bottom: 60%;
       right: 50%;
     }
-    #img-container img{
+    #img-container img:not(.status-container){
       width: 60vw;
     }
     #img-gpd img{
@@ -116,9 +123,8 @@
     #img-container{
       right: 5vw;
     }
-    #img-container img {
+    #img-container img:not(.status-container){
       width: 50vh;
-      transform: unset;
     }
     #img-gpd{
       position: fixed;

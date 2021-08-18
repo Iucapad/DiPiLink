@@ -1,18 +1,20 @@
 #id-container{
-    border-radius: 10px;
+    color: var(--accent-trans);
+    text-shadow: 0 0 0 black;
+    border-radius: 25px;
     margin: 5vmin 2vw;
     padding: 1vmin;
     animation: elevate 2s forwards;
-    background: radial-gradient(ellipse at top right,var(--accent-color),#F0F0FFAA 50%);
-    border: 2px solid var(--accent-color);
+    background: radial-gradient(ellipse at top right,var(--accent-color),#F3F3F35A 50%);
+    border: 1px solid var(--accent-color);
     display: grid;
     grid-template-rows: 1fr auto;
     justify-items: center;
 }
 @keyframes elevate {
-    10%{transform:translateY(0);filter: hue-rotate(0deg) drop-shadow(0 0 0 black);}
-    45%{transform: translateY(-5px);filter: hue-rotate(0deg) drop-shadow(6px 6px 20px black);}
-    100%{transform:translateY(0);filter: hue-rotate(20deg) drop-shadow(6px 6px 10px black);}
+    10%{transform:translateY(0);filter: hue-rotate(0deg) drop-shadow(0 0 0 var(--accent-color));}
+    45%{transform: translateY(-5px);filter: hue-rotate(0deg) drop-shadow(6px 6px 20px var(--accent-color));}
+    100%{transform:translateY(0);filter: hue-rotate(20deg) drop-shadow(6px 6px 10px var(--accent-color));}
 }
 #identity{
     grid-column: 1/3;
@@ -39,4 +41,9 @@ img.val{margin: 0 5px;}
     align-items: center;
     grid-template-columns: max-content auto;
     gap: 5px;
+}
+@media screen and (max-width: 600px){
+    #id-container{
+      border-radius: 15px;
+    }
 }

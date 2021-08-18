@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {statsService} from '../../services/statsService';
+import LicenseStatus from './licenseStatus/licenseStatus';
 
 import { withGlobalState } from 'react-globally';
 import {injectIntl, FormattedMessage} from 'react-intl';
@@ -49,9 +50,7 @@ class StatisticsView extends Component {
                             <p className="stat-title"><FormattedMessage id={"stat.id"}/><span className="val">{this.state.id}</span></p>
                             <p className="stat-title"><FormattedMessage id={"stat.gametime"}/><span className="val">{this.getTime(statsService.getTimer(false))}</span></p>
                         </div>
-                        <div id="country-flag" className="usertag">
-                            <span>BE</span>
-                        </div>
+                        <LicenseStatus level={statsService.getTimer(false)}/>
                     </div>
                     <div className="other">
                         <p className="stat-title"><FormattedMessage id={"stat.connection"}/><span className="val">{this.getHour()}</span></p>

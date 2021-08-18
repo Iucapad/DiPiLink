@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {FormattedMessage} from 'react-intl';
 import {appSettings} from '../../services/clientService';
+import LicenseStatus from '../statistics/licenseStatus/licenseStatus';
 import './firstExperience.css';
 
 const asset = require("./asset.svg").default;
 const asset2 = require("./asset2.svg").default;
 const asset3 = require("./asset3.svg").default;
+const license = require("./license.svg").default;
 const gamepad = require("./gamepad.svg").default;
 const touch = require("./touch.svg").default;
 const dflt = require("./default.svg").default;
@@ -92,6 +94,14 @@ export default class FirstExperience extends Component{
                     </>
                 )
             case 3:
+                return(
+                    (this.state.edge===2)&&
+                    <>
+                    <div className="line" style={{zIndex:990,left:this.state.stats[0]+40,top:this.state.car[1]+60,width:'20px',height:'60px'}}/>
+                    <p className="tip" style={{zIndex:990,left:this.state.stats[0]+30,top:this.state.car[1]+130}}><FormattedMessage id={"tip.statshere"}/></p>
+                    </>
+                )
+            case 4:
                 return(
                     (this.state.edge===2)?
                     <>
@@ -193,7 +203,7 @@ export default class FirstExperience extends Component{
             case 3:
             return(
                 <>
-                    <div key="03" id="img-container" style={this.state.filter?{filter:"blur(1px) opacity(0.5)"}:null}><img draggable="false" src={asset2} alt=""/></div>
+                    <div key="03" id="img-container" style={this.state.filter?{filter:"blur(1px) opacity(0.5)"}:null}><img draggable="false" src={license} alt=""/><LicenseStatus/></div>
                     <div key="3" className="height-anim content-step" style={{padding:(this.state.edge===3)?'10px':'0px 3vmin 8vmin 0px'}}>
                         <h1 style={{display:(this.state.edge===3)?'none':null}}><FormattedMessage id={"exp.a3"}/></h1>
                         <p style={{display:(this.state.edge===3)?'none':null}}><FormattedMessage id={"exp.b3"}/></p>
@@ -205,14 +215,28 @@ export default class FirstExperience extends Component{
                 </>
             );
             case 4:
+            return(
+                <>
+                    <div key="04" id="img-container" style={this.state.filter?{filter:"blur(1px) opacity(0.5)"}:null}><img draggable="false" src={asset2} alt=""/></div>
+                    <div key="4" className="height-anim content-step" style={{padding:(this.state.edge===3)?'10px':'0px 3vmin 8vmin 0px'}}>
+                        <h1 style={{display:(this.state.edge===3)?'none':null}}><FormattedMessage id={"exp.a4"}/></h1>
+                        <p style={{display:(this.state.edge===3)?'none':null}}><FormattedMessage id={"exp.b4"}/></p>
+                        <div id="focusableElements">
+                            <button style={{display:(this.state.edge===2)?'inline-grid':(this.state.edge===3)?'none':'inline-grid'}} onClick={()=>this.setState({step:3})}><FormattedMessage id={"btn.back"}/></button>
+                            <button onClick={()=>this.setState({step:5})}><FormattedMessage id={"btn.next"}/></button>
+                        </div>
+                    </div>
+                </>
+            );
+            case 5:
                 return(
                     <>
-                        <div key="04" id="img-container" style={this.state.filter?{filter:"blur(1px) opacity(0.5)"}:null}><img draggable="false" src={asset3} alt=""/></div>
-                        <div key="4" className="height-anim content-step" style={{padding:(this.state.edge===3)?'10px':'0px 3vmin 8vmin 0px'}}>
-                            <h1 style={{display:(this.state.edge===3)?'none':null}}><FormattedMessage id={"exp.a4"}/></h1>
-                            <p style={{display:(this.state.edge===3)?'none':null}}><FormattedMessage id={"exp.b4"}/></p>
+                        <div key="05" id="img-container" style={this.state.filter?{filter:"blur(1px) opacity(0.5)"}:null}><img draggable="false" src={asset3} alt=""/></div>
+                        <div key="5" className="height-anim content-step" style={{padding:(this.state.edge===3)?'10px':'0px 3vmin 8vmin 0px'}}>
+                            <h1 style={{display:(this.state.edge===3)?'none':null}}><FormattedMessage id={"exp.a5"}/></h1>
+                            <p style={{display:(this.state.edge===3)?'none':null}}><FormattedMessage id={"exp.b5"}/></p>
                             <div id="focusableElements">
-                                <button style={{display:(this.state.edge===2)?'inline-grid':(this.state.edge===3)?'none':'inline-grid'}} onClick={()=>this.setState({step:3})}><FormattedMessage id={"btn.back"}/></button>
+                                <button style={{display:(this.state.edge===2)?'inline-grid':(this.state.edge===3)?'none':'inline-grid'}} onClick={()=>this.setState({step:4})}><FormattedMessage id={"btn.back"}/></button>
                                 <button onClick={this.props.endExp}><FormattedMessage id={"btn.next"}/></button>
                             </div>
                         </div>
@@ -238,6 +262,7 @@ export default class FirstExperience extends Component{
                     <img src={asset} alt=""/>
                     <img src={asset2} alt=""/>
                     <img src={asset3} alt=""/>
+                    <img src={license} alt=""/>
                     <img src={gamepad} alt=""/>
                     <img src={touch} alt=""/>
                     <img src={dflt} alt=""/>

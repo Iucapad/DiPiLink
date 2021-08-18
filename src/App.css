@@ -19,6 +19,10 @@
   from {opacity:0;}
   to {opacity:var(--opac1);}
 }
+@keyframes cardAppear{
+  from {opacity:0;transform: scale(0.9);}
+  to {opacity:var(--opac1);transform: scale(1);}
+}
 @keyframes height{
   0% {opacity:0;max-height:0;}
   50%{opacity:var(--opac1);}
@@ -96,7 +100,7 @@ button:focus-visible{
   box-shadow:none;
 }
 #carView,#confView,#aboutView,#statsView,#slideView{
-  animation: appear 0.6s;
+  animation: cardAppear 0.6s;
   margin: 0 auto;
   max-width: min(100vw,45em);
 }
