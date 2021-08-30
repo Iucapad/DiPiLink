@@ -9,12 +9,12 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.1",
-    "dipistream": "^1.0.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-globally": "^1.1.0",
     "react-intl": "^5.10.16",
-    "react-scripts": "^4.0.3"
+    "react-scripts": "^4.0.3",
+    "ts-h264-live-player": "*"
   },
   "scripts": {
     "start": "react-scripts start",

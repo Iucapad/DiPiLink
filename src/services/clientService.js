@@ -41,18 +41,19 @@ class Api {
         hosts.forEach(
             i=>fetch(`http${s?"s":""}://${i.host}:${i.port}/api`).then(()=>{
                 this.api=`${i.host}:${i.port}/api`;
+                socket.set(`ws${appSettings.getAppValue("ssl")}://${this.api}`);
                 appSettings.setAppValue("ssl",s?"s":"");
                 clearTimeout(timeout);
-            })
+            }).catch(()=>console.log("Trying an other approach..."))
         );
     }
-    request = (target,type,obj) => {
-        let req={
+    request = (target, type, body) => {
+        const req = {
             method: type,
             headers: {'Content-Type':'application/json'},
-            body: JSON.stringify(obj)
+            body: JSON.stringify(body)
         };
-        return fetch(`http${appSettings.getAppValue("ssl")}://${this.api+target}`,req).then(res=>res);
+        return fetch(`http${appSettings.getAppValue("ssl")}://${this.api+target}`,req).catch(()=>console.log("The request failed"));
       }
     set = v => {
         this.api=`${v}:8060/api`;
@@ -67,8 +68,8 @@ class Socket {
     constructor(){
         this.socket=undefined;
     }
-    set = s => {this.socket=s;}
-    get = () => {return this.socket;}
+    set = target => this.socket = new WebSocket(target);
+    get = () => this.socket;
 }
 export const socket = new Socket();
 
@@ -94,8 +95,8 @@ class AppSettings {
     }
     get user() {return this.usObj.id};
     loadSettings = () =>{
-        let o = localStorage.getItem("dpl_appSettings");
-            return (o) ? JSON.parse(o) : appDefault;
+        const o = localStorage.getItem("dpl_appSettings");
+        return (o) ? JSON.parse(o) : appDefault;
     }
     saveSettings = (remote) => {
         if (remote){

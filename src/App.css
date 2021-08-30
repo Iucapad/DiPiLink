@@ -16,8 +16,15 @@
 @-moz-document url-prefix() {:root{--opac1: 0.999;}}
 @supports (-ms-ime-align:auto) {:root{--opac1: 0.999;}#animatedBackground{background:-ms-linear-gradient(white) !important;}}
 @keyframes appear{
-  from {opacity:0;}
-  to {opacity:var(--opac1);}
+  0% {opacity:0;transform: translateY(20px);}
+  50% {transform: unset;}
+  100% {opacity:var(--opac1);}
+}
+@keyframes imgAppear{
+  0% {opacity:0;}
+  30% {opacity:0;filter:drop-shadow(0 0 10px var(--color-grey));transform: translateY(30px);}
+  60% {transform: unset;filter:drop-shadow(0 0 6px var(--color-grey));}
+  100% {opacity:var(--opac1);filter:drop-shadow(0 0 0px var(--color-grey));}
 }
 @keyframes cardAppear{
   from {opacity:0;transform: scale(0.9);}
@@ -115,6 +122,7 @@ button:focus-visible{
   text-align: center;
 }
 .about-img{
+  animation: imgAppear 1.4s;
   margin: 10px auto;
   display: block;
   border-radius: 20px;
@@ -167,9 +175,9 @@ h1{text-align:left;margin:1vmin 20px;}
 h2{text-align:left;margin:1vmin 50px;}
 p{line-height:150%;margin:0 5vw 15px 5vw;}
 input,button,select{display:inline-grid;background:var(--color-panel);padding:5px 10px;border:none;border-radius:5px;outline:0 !important;font-size:1rem;color:var(--color-text);margin:5px;}
-button{background:var(--accent-soft);border-radius:10px;font-weight:bold;color:white;}
-button:hover{opacity:0.8;}
-button:active{filter:saturate(2)}
+button{transition:filter 0.4s, opacity 0.6s;background:var(--accent-soft);border-radius:10px;font-weight:bold;color:white;}
+button:hover{opacity:0.8;filter:saturate(1.4);}
+button:active{filter:saturate(2);}
 button:disabled{filter:opacity(20%);}
 button img{margin:5px auto;filter:drop-shadow(0px 0px 2px var(--color-grey));}
 .form{display:block;text-align:center;width:fit-content;margin:4vmin auto;}
@@ -207,9 +215,6 @@ button img{margin:5px auto;filter:drop-shadow(0px 0px 2px var(--color-grey));}
       grid-template-columns: 1fr;
       gap: 1.2vmin;
     }
-}
-@media screen and (min-width: 1280px) and (min-height: 720px) {
-  header{border:var(--fallback-border);margin:1.75vmin 20vmin 3.5vmin 20vmin;border-radius:8px;box-shadow:var(--shadow-large);top:1.75vmin;}
 }
 @media (screen-spanning: single-fold-vertical) {
   #confView,#aboutView,#statsView{

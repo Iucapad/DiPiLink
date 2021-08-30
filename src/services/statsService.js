@@ -34,6 +34,7 @@ class StatsService {
     }
 
     setConnection = () => {
+        this.startTimer();
         this.fetchStats();
         this.currentStats.clientStats.connection = Date.now();
         this.pushTimeout = setTimeout(this.loop,60000);
@@ -48,14 +49,12 @@ class StatsService {
     getStat = key =>  this.currentStats ? this.currentStats[key] : this.defaultStats[key];
     
     fetchStats = () => {
-        api.request(`/stats/${appSettings.id}`,"GET").then(res =>
-            res.json()
-        ).then(data=>
+        api.request(`/stats/${appSettings.id}`, "GET").then(res => res.json()).then(data =>
             {
                 this.time.total = data.gameTime;
                 this.currentStats = {...this.currentStats, ...data};
             }
-        )
+        ).catch(()=>console.log("stats not fetched"));
     }
 
     pushStats = () => {

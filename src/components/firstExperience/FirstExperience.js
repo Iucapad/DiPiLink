@@ -95,10 +95,21 @@ export default class FirstExperience extends Component{
                 )
             case 3:
                 return(
-                    (this.state.edge===2)&&
+                    (this.state.edge===2)?
                     <>
-                    <div className="line" style={{zIndex:990,left:this.state.stats[0]+40,top:this.state.car[1]+60,width:'20px',height:'60px'}}/>
-                    <p className="tip" style={{zIndex:990,left:this.state.stats[0]+30,top:this.state.car[1]+130}}><FormattedMessage id={"tip.statshere"}/></p>
+                    <div className="line" style={{zIndex:990,left:this.state.stats[0]+40,top:this.state.stats[1]+60,width:'20px',height:'40px'}}/>
+                    <p className="tip" style={{zIndex:990,left:this.state.stats[0]+30,top:this.state.stats[1]+110}}><FormattedMessage id={"tip.statshere"}/></p>
+                    </>
+                    :
+                    (this.state.edge===1)?
+                    <>
+                        <div className="line" style={{zIndex:950,left:this.state.nav[0]+20,top:this.state.nav[1]+60,width:'70px',height:'50px'}}/>
+                        <p className="tip" style={{zIndex:950,left:this.state.nav[0]+80,top:this.state.nav[1]+120}}><FormattedMessage id={"tip.navhere"}/></p>
+                    </>
+                    :
+                    <>
+                    <div className="line" style={{zIndex:990,left:this.state.stats[0],top:this.state.stats[1]+20,width:'170px',height:'60px'}}/>
+                    <p className="tip" style={{zIndex:950,left:this.state.stats[0]+165,top:this.state.stats[1]+90}}><FormattedMessage id={"tip.statshere"}/></p>
                     </>
                 )
             case 4:
@@ -112,7 +123,7 @@ export default class FirstExperience extends Component{
                     (this.state.edge===1)?
                     <>
                         <div className="line" style={{zIndex:950,left:this.state.nav[0]+20,top:this.state.nav[1]+60,width:'70px',height:'50px'}}/>
-                        <p className="tip" style={{zIndex:950,left:this.state.nav[0]+80,top:this.state.nav[1]+120}}><FormattedMessage id={"tip.nav"}/></p>
+                        <p className="tip" style={{zIndex:950,left:this.state.nav[0]+80,top:this.state.nav[1]+120}}><FormattedMessage id={"tip.navhere"}/></p>
                     </>
                     :
                     <>

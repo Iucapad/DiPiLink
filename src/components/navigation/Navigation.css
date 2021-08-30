@@ -63,3 +63,6 @@ header{
 .edge>.item:hover:not(.active) .ind{width:2px;height:16px;background: var(--accent-soft);}
 .edge>.active .ind{width:2px;height:16px;background: var(--accent-color);}
 .edge:not(.open) .ind{height: 0;}
+@media screen and (min-width: 1280px) and (min-height: 720px){
+    header {border:var(--fallback-border);margin:1.75vmin 20vmin 3.5vmin 20vmin;border-radius:8px;box-shadow:var(--shadow-large);top: 1.75vmin;}
+}

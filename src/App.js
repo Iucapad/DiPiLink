@@ -7,7 +7,6 @@ import {applyColor} from './services/colors';
 import { withGlobalState } from 'react-globally';
 import {injectIntl} from 'react-intl';
 
-import Loading from './components/Loading';
 import Header from './components/navigation/Header';
 import Slideview from './components/Slideview';
 import Aboutview from './components/Aboutview';
@@ -35,7 +34,7 @@ class App extends Component {
     const content={
     default:null,
     bridge:
-    <Suspense fallback={<Loading/>}>
+    <Suspense fallback={null}>
       <CarView id="carView" exp={this.state.exp} inputType={this.state.inputType} visible={(this.state.currentTab==="carTab")?{opacity:'var(--opac1)',animation:'carAppear 1s'}:{opacity:0,animation:'disappear 0.9s'}}/>
       <StatisticsView visible={(this.state.currentTab==="statsTab")?{display:'grid',opacity:'var(--opac1)'}:{display:'none',opacity:0}}/>
     </Suspense>

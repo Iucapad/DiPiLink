@@ -41,12 +41,13 @@
   }
   #img-container .status-container{
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 5%;
+    right: 15%;
     width: auto;
     height: 60%;
   }
   #img-gpd{
+    filter: drop-shadow(0px 0px 3px var(--color-grey));
     animation: appear 2s;
     width: 100vw;
     height: 100vh;
@@ -101,7 +102,7 @@
       width: 60vw;
     }
     #img-gpd img{
-      transform: translateY(-50%);
+      transform: translateY(-20vh);
     }
     #controls-gpd{
       padding-left: 8px;
@@ -121,7 +122,8 @@
   }
   @media screen and (max-height:500px){
     #img-container{
-      right: 5vw;
+      right: 30vw;
+      bottom: 60%;
     }
     #img-container img:not(.status-container){
       width: 50vh;

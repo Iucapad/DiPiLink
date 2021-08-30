@@ -1,8 +1,8 @@
 import React, {Component,Suspense,lazy} from 'react';
 import TPArea from '../touchpad/tpArea';
 import MaxSpeedSlider from '../steps/settings/maxSpeed/MaxSpeedSlider';
-import * as  WSAvcPlayer from 'dipistream/http-live-player';
-import {api,socket,appSettings} from '../../services/clientService';
+import {WSAvcPlayer} from 'ts-h264-live-player';
+import {socket,appSettings} from '../../services/clientService';
 import {statsService} from '../../services/statsService';
 import {controls} from '../../services/controlsConnector';
 
@@ -14,24 +14,19 @@ const FirstExperience = lazy(()=>import('../firstExperience/FirstExperience.js')
 class CarView extends Component{
     constructor(props){
         super(props);
+        this.myRef = React.createRef();
         this.state = {plr:null, exp:false};
     }
     launchStream = () => {
         try{
-            let canvas = document.getElementById("carView").querySelector('canvas');
-            const url = api.get(true);
-            const player = new WSAvcPlayer(canvas,"webgl",1,35);
+            const player = new WSAvcPlayer(this.myRef.current);
             this.setState({plr:player});
             controls.setActive(true);
             statsService.setConnection();
-            statsService.startTimer();
-            player.connect(url);
-            setTimeout(()=>{
-            socket.set(player.ws);
-            player.playStream();
-            },2000)
+            player.connectWithCustomClient(socket.get());
+            player.startStream();
         }catch(err){
-            alert("Impossible de lancer le stream: "+err);
+            console.log("Impossible de lancer le stream: "+err);
         }
     }
     endExp = () => {
@@ -40,7 +35,7 @@ class CarView extends Component{
     }
     componentDidMount(){
         if (!this.props.globalState.exp){
-            statsService.setConnection();//this.launchStream();
+            this.launchStream();
         }else{
             this.setState({exp:true});
         }
@@ -75,7 +70,7 @@ class CarView extends Component{
                 </Suspense>
                 :
                 <div id={this.props.id} style={this.props.visible}>
-                    <canvas/>
+                    <canvas ref={this.myRef}/>
                     {this.props.inputType==="touch" ? <div id="gamepad"><TPArea/></div>:null}
                     {!appSettings.getValue("minimalUi") && this.props.inputType!=="gamepad"?<MaxSpeedSlider/>:null}
                 </div>

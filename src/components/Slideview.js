@@ -17,7 +17,8 @@ export default class Slideview extends Component {
         };
     }
     checkState = () => {
-        if (api.get()) {
+        const target = api.get();
+        if (target) {
             if (String(api.get()).includes("dipi.car")){
                 this.setState({currentView:1}); 
             }else{
