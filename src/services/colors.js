@@ -11,15 +11,12 @@ export const colors = [
   {accent10:"#CFC98D",accent30:"#A29970",accent80:"#5D7949",accent:"#44672D",accenttrans:"#44672D70",backdrop:"#E4F7FD90",name:"Caterpillar"},
   {accent10:"#1A7483",accent30:"#228D96",accent80:"#0E3C59",accent:"#0D294D",accenttrans:"#0D294D70",backdrop:"#EDF9FD90",name:"Submarine"}
 ];
-export function setColor(v){
-  appSettings.setValue("theme",v);
+export const setColor = v => {
+  appSettings.setValue("theme", v);
   applyColor();
 }
-export function getColor(){
-    const v = appSettings.getValue("theme");
-    return v?v:0;
-}
-export function applyColor(){
+export const getColor = () => appSettings.getValue("theme") || 0;
+export const applyColor = () => {
   let value = colors[getColor()];
   let root = window.document.documentElement;
   root.style.setProperty('--backdrop',value.backdrop);

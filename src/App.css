@@ -4,7 +4,7 @@
   --color-component:#EEEEEE50;
   --offsetTop:env(safe-area-inset-top);
 }
-.ufc>*:not(header):not(#exp){
+.ufc > *:not(header):not(#exp){
   transition: var(--filter);
   filter: saturate(0.7) brightness(0.8);
 }

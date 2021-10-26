@@ -1,13 +1,13 @@
 class Battery {
-  constructor(){
-    this.battery=undefined;
+  constructor() {
+    this.battery = null;
   }
   get isLow(){
     return false;
   }
-    batteryInitialize = ()=> {
-      this.battery=navigator.getBattery().then(function(battery) {
-        function updateAllBatteryInfo(){
+    batteryInitialize = () => {
+      this.battery = navigator.getBattery().then(battery => {
+        function updateAllBatteryInfo() {
           updateChargeInfo();
           updateLevelInfo();
           updateChargingInfo();
@@ -15,7 +15,7 @@ class Battery {
         }
         updateAllBatteryInfo();
       
-        battery.addEventListener('chargingchange', function(){
+        battery.addEventListener('chargingchange', () => {
           updateChargeInfo();
         });
         function updateChargeInfo(){
@@ -23,15 +23,15 @@ class Battery {
                       + (battery.charging ? "Yes" : "No"));
         }
       
-        battery.addEventListener('levelchange', function(){
+        battery.addEventListener('levelchange', () => {
           updateLevelInfo();
         });
-        function updateLevelInfo(){
+        function updateLevelInfo() {
           console.log("Battery level: "
                       + battery.level * 100 + "%");
         }
       
-        battery.addEventListener('chargingtimechange', function(){
+        battery.addEventListener('chargingtimechange', () => {
           updateChargingInfo();
         });
         function updateChargingInfo(){
@@ -39,7 +39,7 @@ class Battery {
                        + battery.chargingTime + " seconds");
         }
       
-        battery.addEventListener('dischargingtimechange', function(){
+        battery.addEventListener('dischargingtimechange', () => {
           updateDischargingInfo();
         });
         function updateDischargingInfo(){
