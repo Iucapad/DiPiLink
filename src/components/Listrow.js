@@ -16,7 +16,7 @@ export default function Listrow({ name, type, value, action, title, onClick, foc
             );
         default:
             return(
-            <tr title={ title } onClick={ ()=>onClick() } style={ focus ? { background:'var(--accent-soft)', color:'#FFFFFF88' } : undefined }>
+            <tr title={ title } onClick={ () => onClick() } style={ focus ? { background:'var(--accent-soft)', color:'#FFFFFF88' } : undefined }>
                 <td>{ title }</td>
             </tr>
         );
