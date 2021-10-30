@@ -1,11 +1,9 @@
-var inputType="default";
+var inputType = "default";
 
-export function setInput(type){
-    if (inputType!==type) inputType=type;
+export const setInput = type => {
+    inputType !== type && (inputType = type);
 }
-export function getInput(){
-    return inputType;
-}
+export const getInput = () => inputType;
 export function keyPressed(code){
     if(["ArrowDown","ArrowUp","ArrowLeft","ArrowRight","Enter"].includes(code)){
         if (code==="ArrowUp"){
@@ -26,7 +24,7 @@ export function keyPressed(code){
     }
 }
 function clickPress(elem) {
-    var evt = new MouseEvent("click", {
+    const evt = new MouseEvent("click", {
         bubbles: true,
         cancelable: true,
         view: window

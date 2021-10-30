@@ -20,7 +20,7 @@ class StatsService {
         this.updateEvent = undefined;
         this.pushTimeout = undefined;
         this.inputType = undefined;
-        this.time = {play: 0, total: 0};
+        this.time = { play: 0, total: 0 };
     }
     updateTimer = () => {
         this.time.play++;

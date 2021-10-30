@@ -26,4 +26,4 @@ export const applyColor = () => {
   root.style.setProperty('--gradient-80', value.accent);
   root.style.setProperty('--gradient-30', value.accent30);
   root.style.setProperty('--gradient-10', value.accent10);
-  }
+}
