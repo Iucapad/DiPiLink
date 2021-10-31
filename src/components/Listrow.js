@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Listrow({ name, type, value, action, title, onClick, focus, removeNetwork }){
+const Listrow = ({ name, type, value, action, title, onClick, focus, removeNetwork }) => {
     switch(action){
         case "edit":
             return(
@@ -22,3 +22,4 @@ export default function Listrow({ name, type, value, action, title, onClick, foc
         );
     };       
 };
+export default Listrow;

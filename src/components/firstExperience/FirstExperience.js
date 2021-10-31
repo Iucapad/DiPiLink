@@ -16,9 +16,17 @@ const controls = appSettings.getAppValue("kbLayout");
 export default class FirstExperience extends Component{
     constructor(props){
         super(props);
-        this.state={filter:false,car:[0,0],stats:[0,0],conf:[0,0],nav:[0,0],edge:1,step:0};
+        this.state={
+            filter: false,
+            car: [0,0],
+            stats: [0,0],
+            conf: [0,0],
+            nav: [0,0],
+            edge: 1,
+            step: 0
+        };
     }
-    positionElements(){
+    positionElements() {
         const main = document.getElementById("maintab");
         const car=main.childNodes[1].getBoundingClientRect();
         const stats=main.childNodes[2].getBoundingClientRect();
@@ -50,13 +58,13 @@ export default class FirstExperience extends Component{
             });
         }
     }
-    shouldComponentUpdate(nProps, nState){
+    shouldComponentUpdate(nProps, nState) {
         return !(JSON.stringify(nState) === JSON.stringify(this.state) && this.props.inputType === nProps.inputType);
     }
-    componentDidMount(){
+    componentDidMount() {
         setInterval(()=>this.positionElements(),350);
     }
-    getTips(){
+    getTips() {
         switch (this.state.step){
             case 1:
                 return(
@@ -87,7 +95,7 @@ export default class FirstExperience extends Component{
                 );
             case 2:
                 return(
-                    (this.state.edge===2)&&
+                    this.state.edge === 2 &&
                     <>
                     <div className="line" style={{zIndex:990,left:this.state.car[0]+40,top:this.state.car[1]+60,width:'20px',height:'60px'}}/>
                     <p className="tip" style={{zIndex:990,left:this.state.car[0]+30,top:this.state.car[1]+130}}><FormattedMessage id={"tip.controls"}/></p>
@@ -95,13 +103,13 @@ export default class FirstExperience extends Component{
                 )
             case 3:
                 return(
-                    (this.state.edge===2)?
+                    this.state.edge === 2 ?
                     <>
                     <div className="line" style={{zIndex:990,left:this.state.stats[0]+40,top:this.state.stats[1]+60,width:'20px',height:'40px'}}/>
                     <p className="tip" style={{zIndex:990,left:this.state.stats[0]+30,top:this.state.stats[1]+110}}><FormattedMessage id={"tip.statshere"}/></p>
                     </>
                     :
-                    (this.state.edge===1)?
+                    this.state.edge === 1 ?
                     <>
                         <div className="line" style={{zIndex:950,left:this.state.nav[0]+20,top:this.state.nav[1]+60,width:'70px',height:'50px'}}/>
                         <p className="tip" style={{zIndex:950,left:this.state.nav[0]+80,top:this.state.nav[1]+120}}><FormattedMessage id={"tip.navhere"}/></p>
@@ -114,13 +122,13 @@ export default class FirstExperience extends Component{
                 )
             case 4:
                 return(
-                    (this.state.edge===2)?
+                    this.state.edge === 2 ?
                     <>
                         <div className="line" style={{zIndex:950,left:this.state.conf[0]+30,top:this.state.conf[1]+60,width:'30px',height:'20px'}}/>
                         <p className="tip" style={{zIndex:950,left:this.state.conf[0]+60,top:this.state.conf[1]+85}}><FormattedMessage id={"tip.here"}/></p>
                     </>
                     :
-                    (this.state.edge===1)?
+                    this.state.edge === 1 ?
                     <>
                         <div className="line" style={{zIndex:950,left:this.state.nav[0]+20,top:this.state.nav[1]+60,width:'70px',height:'50px'}}/>
                         <p className="tip" style={{zIndex:950,left:this.state.nav[0]+80,top:this.state.nav[1]+120}}><FormattedMessage id={"tip.navhere"}/></p>
@@ -131,7 +139,7 @@ export default class FirstExperience extends Component{
                         <p className="tip" style={{zIndex:950,left:this.state.conf[0]+165,top:this.state.conf[1]+90}}><FormattedMessage id={"tip.here"}/></p>
                     </>     
                 )
-            default:break;
+            default: break;
         }
     }
     getControls(){
