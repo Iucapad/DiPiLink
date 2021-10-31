@@ -1,4 +1,4 @@
-import {api, appSettings} from './clientService';
+import { api, appSettings } from './clientService';
 
 const defaultValues = {
     gameTime: 0,
@@ -16,7 +16,7 @@ const defaultValues = {
 
 class StatsService {
     constructor() {
-        this.currentStats = {...defaultValues};
+        this.currentStats = { ...defaultValues };
         this.updateEvent = undefined;
         this.pushTimeout = undefined;
         this.inputType = undefined;
@@ -25,7 +25,7 @@ class StatsService {
     updateTimer = () => {
         this.time.play++;
         this.currentStats.clientStats.inputTime[this.inputType]++;
-        this.updateEvent = setTimeout(this.updateTimer,10000);
+        this.updateEvent = setTimeout(this.updateTimer, 10000);
     }
 
     updateInput = nInput => {
@@ -37,12 +37,12 @@ class StatsService {
         this.startTimer();
         this.fetchStats();
         this.currentStats.clientStats.connection = Date.now();
-        this.pushTimeout = setTimeout(this.loop,60000);
+        this.pushTimeout = setTimeout(this.loop, 60000);
     }
 
-    getTimer = (play) => play ? this.time.play/10 : this.time.total+this.time.play/10;
+    getTimer = play => play ? this.time.play / 10 : this.time.total + this.time.play / 10;
 
-    startTimer = () => setTimeout(this.updateTimer,10000);
+    startTimer = () => setTimeout(this.updateTimer, 10000);
 
     pauseTimer = () => clearTimeout(this.updateEvent);
 
@@ -52,16 +52,16 @@ class StatsService {
         api.request(`/stats/${appSettings.id}`, "GET").then(res => res.json()).then(data =>
             {
                 this.time.total = data.gameTime;
-                this.currentStats = {...this.currentStats, ...data};
+                this.currentStats = { ...this.currentStats, ...data };
             }
-        ).catch(()=>console.log("stats not fetched"));
+        ).catch(() => console.log("stats not fetched"));
     }
 
     pushStats = () => {
-        if (this.currentStats){
-            api.request(`/stats/${appSettings.id}`,"PUT",this.currentStats).then(() =>{
+        if (this.currentStats) {
+            api.request(`/stats/${appSettings.id}`,"PUT", this.currentStats).then(() => {
                 console.log("stats sent", this.currentStats);
-            }).catch(e=>{
+            }).catch(e => {
                 console.log(e, this.currentStats)
             });
         }
@@ -69,8 +69,8 @@ class StatsService {
 
     loop = () => {
         this.pushStats();
-        this.pushTimeout = setTimeout(this.loop,60000);
+        this.pushTimeout = setTimeout(this.loop, 60000);
     }
-    get defaultStats(){return defaultValues}
+    get defaultStats() { return defaultValues} ;
 }
 export const statsService = new StatsService();

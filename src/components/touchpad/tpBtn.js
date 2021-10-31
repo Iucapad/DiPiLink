@@ -38,7 +38,7 @@ export default class TPBtn extends Component{
     }
     render(){
         return(
-            <div className="tpBtn" ref={this.element} id={this.props.type} onTouchEnd={this.reset} onTouchStart={this.press} onTouchMove={this.press} style={{width:`${maxContainer}px`,height:`${maxContainer}px`}}>
+            <div className="tpBtn" ref={this.element} onTouchEnd={this.reset} onTouchStart={this.press} onTouchMove={this.press} style={{width:`${maxContainer}px`,height:`${maxContainer}px`}}>
                 <div style={{width:`${maxSize}px`,height:`${maxSize}px`,transform:`translate(-${maxSize/2}px,-${maxSize/2}px) translateX(${this.state.position.x}px) translateY(${this.state.position.y}px)`}}/>
             </div>
         );

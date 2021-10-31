@@ -1,13 +1,10 @@
-import React, {Component} from 'react';
+import React from 'react';
 import TPBtn from './tpBtn';
 import './touchpad.css';
 
-export default class TPArea extends Component{
-    render(){
-        return(
-            <div className="tpArea" id={this.props.id}>
-                <TPBtn type={null}/>
-            </div>
-        );
-    }
-};
+const TPArea = ({ id }) => 
+    <div className="tpArea" id={ id }>
+        <TPBtn/>
+    </div>
+
+export default TPArea;

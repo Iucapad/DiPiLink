@@ -1,48 +1,43 @@
 import React, {Component} from 'react';
-import {api,settingsClear} from '../services/clientService';
+import { api,settingsClear } from '../services/clientService';
 
 import { withGlobalState } from 'react-globally';
-import {injectIntl} from 'react-intl';
+import { injectIntl } from 'react-intl';
 
-class Button extends Component {
-    render(){
-        return(
-            <button id={this.props.id} className={this.props.class} value={this.props.value} disabled={this.props.disabled} data-ind={this.props.ind} onClick={() => this.clickEvent(this.props)}>
-                {this.getImg()}{this.props.text}
-            </button>
-        );
+const Button = ({ className, confState, disabled, id, ind, intl, img, onClick, setGlobalState, text, value }) => {
+    const getImg = () => img && <img draggable="false" width="50" height="50" src={require(`../assets/${ img }`).default} alt="<img>"/>;
+    
+const clickEvent = () => {
+    if (!className) {
+        return onClick();
     }
-    getImg(){
-        return this.props.img ? <img draggable="false" width="50" height="50" src={require(`../assets/${this.props.img}`).default} alt="<img>"/> : null;
+    if (className.includes("slideViewBtn")) {
+        confState(value);
     }
-    clickEvent(props){
-        const {intl}=props;
-        if (!this.props.class) {
-            this.props.onClick();
-            return;
-        }
-        if (this.props.class.includes("slideViewBtn")){
-            this.props.confState(props.value);
-        }
-        if (this.props.class.includes("stepAction")){
-            this.props.confState("next");
-        }
-        else if (this.props.class.includes("resetSettings")){
-            settingsClear();
-        }
-        if (this.props.class.includes("checkHost")){
-            api.request(`/`,"GET").then((res) =>{
-                if (res.status===200){
-                    this.props.confState(props.value);
-                }
-            }).catch(()=>{
-                this.props.setGlobalState({error:intl.formatMessage({id:"error.nolink"})})
-            });
-        }
-        if (this.props.class.includes("checkConfig")){
-            this.props.confState(props.value);
-        }
+    if (className.includes("stepAction")) {
+        confState("next");
     }
+    else if (className.includes("resetSettings")) {
+        settingsClear();
+    }
+    if (className.includes("checkHost")) {
+        api.request(`/`,"GET").then(res => {
+            res.status === 200 && confState(value);
+        }).catch(() => {
+            setGlobalState({error:intl.formatMessage({id:"error.nolink"})})
+        });
+    }
+    if (className.includes("checkConfig")){
+        confState(value);
+    }
+}
+
+    return(
+        <button id={ id } className={ className } value={ value } disabled={ disabled } data-ind={ ind } onClick={ clickEvent }>
+            { getImg }{ text }
+        </button>
+    );
+
 }
 
 export default injectIntl(withGlobalState(Button));
