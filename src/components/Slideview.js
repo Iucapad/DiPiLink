@@ -58,13 +58,16 @@ export default class Slideview extends Component {
     render(){
         return(
             <>
-            {this.state.currentView ?
-                <div key={this.state.currentView} className="height-anim">
-                <Suspense fallback={<Loading/>}>
-                    {this.getContent()}
-                </Suspense>
+            {
+                this.state.currentView !== undefined ?
+                <div key={ this.state.currentView } className="height-anim">
+                    <Suspense fallback={ <Loading/> }>
+                        { this.getContent() }
+                    </Suspense>
                 </div>
-                : <Loading/>}
+                : 
+                <Loading/>
+            }
             </>
         );
     }

@@ -10,6 +10,7 @@ import { injectIntl } from 'react-intl';
 import Header from './components/navigation/HeaderUI';
 import Slideview from './components/Slideview';
 import Aboutview from './components/Aboutview';
+import Codeview from './components/education/Codeview/Codeview';
 import AnimatedBackground from './components/background/AnimatedBackground';
 import HowToPage from './components/steps/HowToPage';
 import { statsService } from './services/statsService';
@@ -23,20 +24,24 @@ const devCapable = appSettings.getAppValue("devCapable");
 class App extends Component {
   constructor(props){
     super(props);
-    this.state={
+    this.state = {
       currentTab: "confTab",
       currentColor: "Surf",
-      currentMode: "default",
+      currentMode: "codeview",
       inputType: "default"
     };
   }
   getContent() {
-    const content={
+    const content = {
     default:null,
     bridge:
     <Suspense fallback={null}>
       <CarView id="carView" exp={this.state.exp} inputType={this.state.inputType} visible={(this.state.currentTab==="carTab")?{opacity:'var(--opac1)',animation:'carAppear 1s'}:{opacity:0,animation:'disappear 0.9s'}}/>
       <StatisticsView visible={(this.state.currentTab==="statsTab")?{display:'grid',opacity:'var(--opac1)'}:{display:'none',opacity:0}}/>
+    </Suspense>,
+    codeview:
+    <Suspense fallback={null}>
+      <Codeview visible={(this.state.currentTab==="codeviewTab")?{display:'grid',opacity:'var(--opac1)'}:{display:'none',opacity:0}}/>
     </Suspense>
     }
     return content[this.state.currentMode];

@@ -5,6 +5,7 @@
     "tab.statsTab":"Statistics",
     "tab.iniSetTab":"Configuration",
     "tab.setTab":"Settings",
+    "tab.codeviewTab":"Codeview",
     "btn.confirm":"Confirm",
     "btn.p2p":"Direct link",
     "btn.local":"Local access",
@@ -118,5 +119,8 @@
     "stat.session":"Current session :",
     "stat.input":"Prefered input method :",
     "date.h_m":"{h} hr {m} min",
-    "date.m":"{m} min"
+    "date.m":"{m} min",
+    "codeview.editor": "Editor",
+    "codeview.text": "With Codeview, you'll start coding your own moves",
+    "codeview.placeholder": "Hello World - Start writing some code here"
 }

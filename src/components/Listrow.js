@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Listrow = ({ name, type, value, action, title, onClick, focus, removeNetwork }) => {
     switch(action){
         case "edit":

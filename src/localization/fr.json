@@ -5,6 +5,7 @@
     "tab.statsTab":"Statistiques",
     "tab.iniSetTab":"Configuration",
     "tab.setTab":"Paramètres",
+    "tab.codeviewTab":"Codeview",
     "btn.confirm":"Confirmer",
     "btn.p2p":"Lien direct",
     "btn.local":"Accès local",
@@ -119,5 +120,8 @@
     "stat.session":"Session en cours :",
     "stat.input":"Mode d'interaction préféré :",
     "date.h_m":"{h}h {m}m",
-    "date.m":"{m} min"
+    "date.m":"{m} min",
+    "codeview.editor": "Éditeur",
+    "codeview.text": "Avec Codeview, vous apprendrez à coder vous-même les déplacements",
+    "codeview.placeholder": "Hello World - Commencez à écrire du code ici"
 }

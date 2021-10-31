@@ -39,8 +39,8 @@ class KeyboardConnector {
     kbEventDown = e => {
       const k = getKeyByValue(keys, e.code);
       if (!keys[k]) return;
-      e.preventDefault();
       if (controls.isActive) {
+        e.preventDefault();
         state[k] = direction[k];
         return this.readData();
       }

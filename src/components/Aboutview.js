@@ -1,4 +1,3 @@
-import React from 'react';
 import HowToPage from './steps/HowToPage';
 import { VERSION } from '../services/clientService';
 

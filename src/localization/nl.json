@@ -5,6 +5,7 @@
     "tab.statsTab":"Statistieken",
     "tab.iniSetTab":"Configuratie",
     "tab.setTab":"Instellingen",
+    "tab.codeviewTab":"Codeview",
     "btn.confirm":"Bevestigen",
     "btn.p2p":"Directe link",
     "btn.local":"Lokale toegang",
@@ -118,5 +119,8 @@
     "stat.session":"Huidige sessie :",
     "stat.input":"Geprefereerde interactiemethode :",
     "date.h_m":"{h}u {m}m",
-    "date.m":"{m} min"
+    "date.m":"{m} min",
+    "codeview.editor": "Editor",
+    "codeview.text": "With Codeview, you'll start coding your own moves",
+    "codeview.placeholder": "Hello World - Start writing some code here"
 }

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import Tab from './Tab';
 import './Navigation.css';
 
@@ -12,8 +12,8 @@ const UiHeader = ( { appState, intl, globalState, state } ) => {
     const [tabs, setTabs] = useState( ["confTab", "aboutTab"] );
     const [style, setStyle] = useState( '' );
     const [edge, setEdge] = useState( window.matchMedia("(max-width: 600px)").matches ? 'edge' : '' );
+    const contEl = useRef(null);
     const tab = useRef(null);
-
 
     useEffect(() => {
         window.addEventListener('resize', handleResize);
@@ -61,17 +61,23 @@ const UiHeader = ( { appState, intl, globalState, state } ) => {
     const getMode = ( current ) => {
         const modes = {
             default:
-                <>           
+                <>
                     <img width="50" height="50" className="tabNavigation" id="tabTarget" alt="" onClick={ handleClick }/>
                     <Tab state={ state.currentTab } id="confTab" text={ intl.formatMessage({id:"tab.iniSetTab"}) } handleClick={ handleClick } appState={ appState }/>
                     <Tab state={ state.currentTab } id="aboutTab" text={ intl.formatMessage({id:"tab.aboutTab"}) } handleClick={ handleClick } appState={ appState }/>
                 </>,
             bridge:
-                <>            
+                <>
                     <img width="50" height="50" className="tabNavigation" id="tabTarget" alt="" onClick={ handleClick }/>
                     <Tab state={ state.currentTab } id="carTab" text={ (globalState.hostname && globalState.hostname.length <= 15 && globalState.hostname !== "raspberrypi") ? globalState.hostname : intl.formatMessage({id:"tab.carTab"}) } handleClick={ handleClick } appState={ appState }/>
                     <Tab state={ state.currentTab } id="statsTab" text={ intl.formatMessage({id:"tab.statsTab"}) } handleClick={ handleClick } appState={ appState }/>
                     <Tab state={ state.currentTab } id="confTab" text={ intl.formatMessage({id:"tab.setTab"}) } handleClick={ handleClick } appState={ appState }/>
+                    <Tab state={ state.currentTab } id="aboutTab" text={ intl.formatMessage({id:"tab.aboutTab"}) } handleClick={ handleClick } appState={ appState }/>
+                </>,
+            codeview:
+                <>
+                    <img width="50" height="50" className="tabNavigation" id="tabTarget" alt="" onClick={ handleClick }/>
+                    <Tab state={ state.currentTab } id="codeviewTab" text={ intl.formatMessage({id:"tab.codeviewTab"}) } handleClick={ handleClick } appState={ appState }/>
                     <Tab state={ state.currentTab } id="aboutTab" text={ intl.formatMessage({id:"tab.aboutTab"}) } handleClick={ handleClick } appState={ appState }/>
                 </>
         }
@@ -79,12 +85,13 @@ const UiHeader = ( { appState, intl, globalState, state } ) => {
     };
 ;
     return (
-        <header>
+        <header ref={contEl}>
             <div id="safearea"/>
             <ul className={ `tab ${ open ? "open" : "" } ${edge}` } id="maintab" style={{ height: style }} ref={ tab }> 
             { getMode(state.currentMode) }
             </ul>
             <p id="hdrTitle">{ intl.formatMessage( {id:`tab.${ state.currentTab }`} ) }</p>
+            {open && <OpenManager contEl={ contEl } setOpen={ handleClick }/>}
         </header>
     );
 }
@@ -95,6 +102,20 @@ const UiHeader = ( { appState, intl, globalState, state } ) => {
             state.currentMode === "bridge" && setTabs( ["carTab","statsTab","confTab","aboutTab"] );
         }
     }*/
-    
+const OpenManager = ({ contEl, setOpen }) => {
+    const handleClick = useCallback(e => {
+        const el = contEl.current;
+        if (el && el.contains(e.target)) return;
+        setOpen();      
+      },[setOpen, contEl]);
+    useEffect(() => {
+        document.addEventListener('click', handleClick);
+        return () => {
+            document.removeEventListener('click', handleClick);
+        };
+    }, [setOpen]);
+
+    return <></>
+}
 
 export default injectIntl(withGlobalState(UiHeader));
