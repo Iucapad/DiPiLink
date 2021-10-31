@@ -5,18 +5,18 @@ import {kbconnector} from './services/keyboardConnector';
 import {applyColor} from './services/colors';
 
 import { withGlobalState } from 'react-globally';
-import {injectIntl} from 'react-intl';
+import { injectIntl } from 'react-intl';
 
-import Header from './components/navigation/Header';
+import Header from './components/navigation/HeaderUI';
 import Slideview from './components/Slideview';
 import Aboutview from './components/Aboutview';
 import AnimatedBackground from './components/background/AnimatedBackground';
 import HowToPage from './components/steps/HowToPage';
 import { statsService } from './services/statsService';
-import {Button,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle} from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 
-const CarView = lazy(()=>import('./components/carView/CarView'));
-const StatisticsView = lazy(()=>import('./components/statistics/StatisticsView'));
+const CarView = lazy(() => import('./components/carView/CarView'));
+const StatisticsView = lazy(() => import('./components/statistics/StatisticsView'));
 const CapableTheme = lazy(() => import('./capable/Capable'));
 const devCapable = appSettings.getAppValue("devCapable");
 
@@ -24,13 +24,13 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state={
-      currentTab:"confTab",
-      currentColor:"Surf",
-      currentMode:"default",
-      inputType:"default"
+      currentTab: "confTab",
+      currentColor: "Surf",
+      currentMode: "default",
+      inputType: "default"
     };
   }
-  getContent(){
+  getContent() {
     const content={
     default:null,
     bridge:
@@ -40,33 +40,33 @@ class App extends Component {
     </Suspense>
     }
     return content[this.state.currentMode];
-  }
-  setInput(type){
+  };
+  setInput(type) {
     if (this.state.inputType!==type) {
       this.setState({inputType:type});
     }
-  }
-  componentDidUpdate(pProps,pState){
+  };
+  componentDidUpdate(pProps,pState) {
     if (pState.inputType !== this.state.inputType) return statsService.updateInput(this.state.inputType);
     if (this.state.inputType==="default") {gpconnector.active=false;kbconnector.active=true;}
     else if (this.state.inputType==="gamepad") {gpconnector.active=true;kbconnector.active=false;}
     else{gpconnector.active=false;kbconnector.active=false;}
-  }
-  componentDidMount(){
+  };
+  componentDidMount() {
     applyColor();
-    window.addEventListener('touchstart',()=>{
+    window.addEventListener('touchstart',() => {
       this.setInput("touch");
     });
-    window.addEventListener('keydown',()=>{
+    window.addEventListener('keydown',() => {
       this.setInput("default");
     });
-    window.addEventListener("gamepadconnected",()=>{
+    window.addEventListener("gamepadconnected",() => {
       this.setInput("gamepad");
     });
-    window.addEventListener("gamepaddisconnected",()=>{
+    window.addEventListener("gamepaddisconnected",() => {
       this.setInput("default");
     });
-    window.document.addEventListener("gpInput",()=>{
+    window.document.addEventListener("gpInput",() => {
       this.setInput("gamepad");
     });
     
@@ -116,7 +116,7 @@ class App extends Component {
       <AnimatedBackground tab={this.state.currentTab}/>      
       {this.getContent()}
       <div className="slideView" id="confView" style={(this.state.currentTab==="confTab")?{display:'grid'}:{display:'none'}}>
-        {localStorage.getItem("dpl_appSettings")===null&&<HowToPage/>}
+        { !localStorage.getItem("dpl_appSettings") && <HowToPage/> }
         <Slideview state={this.state} appState={this.setState.bind(this)} onLoad="loadView()"/>
       </div>
       <Aboutview visible={(this.state.currentTab==="aboutTab")?{display:'grid'}:{display:'none'}}/>
