@@ -113,7 +113,7 @@ const OpenManager = ({ contEl, setOpen }) => {
         return () => {
             document.removeEventListener('click', handleClick);
         };
-    }, [setOpen]);
+    }, [setOpen, handleClick]);
 
     return <></>
 }

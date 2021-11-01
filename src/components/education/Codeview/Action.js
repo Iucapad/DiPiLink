@@ -3,7 +3,7 @@ import React from 'react';
 const Action = ({ action }) => {
     return (
         <div>
-            {action.name} {action.option} {action.length}
+            {action.command} {action.option} {action.length}
         </div>
     );
 }

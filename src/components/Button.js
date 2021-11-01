@@ -1,4 +1,3 @@
-import React, {Component} from 'react';
 import { api,settingsClear } from '../services/clientService';
 
 import { withGlobalState } from 'react-globally';

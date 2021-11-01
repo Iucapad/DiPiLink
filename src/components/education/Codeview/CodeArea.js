@@ -1,42 +1,67 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { codeviewService } from '../../../services/codeviewService';
 
-const commands = ["go", "turn", "wait"];
-const isLength = e => e === "3s";
+const commands = { 
+    "go": e => <span style={{color: "orange"}}> {e} </span>,
+    "pivot": e => <span style={{color: "orange"}}> {e} </span>,
+    "wait": e => <span style={{color: "orange"}}> {e} </span>
+};
 
+const options = { 
+    "left": e => <span style={{color: "plum"}}> {e} </span>,
+    "right": e => <span style={{color: "plum"}}> {e} </span>
+};
 
-const CodeArea = () => {{
+const isLength = e => /^[0-9]\d*((\.\d)?)+s$/.test(e) && <span style={{color: "cyan"}}> {e} </span>;
+
+const CodeArea = () => {
     const [content, setContent] = useState(codeviewService.editor);
+    const textArea = useRef(null);
     let valueTimeoutId;
+    let serviceTimeoutId;
 
-    const setInnerContent = (value) => {
-        if (valueTimeoutId) {
-            clearTimeout(valueTimeoutId);
-        }
+    const setInnerContent = value => {
+        valueTimeoutId && clearTimeout(valueTimeoutId);
+        serviceTimeoutId && clearTimeout(serviceTimeoutId);
         valueTimeoutId = setTimeout(() => {
-            codeviewService.setEditor(value);
             setContent(value);
-        }, 10);
+        }, 15);
+        serviceTimeoutId = setTimeout(() => {
+            codeviewService.setEditor(value);
+        }, 1000);
     }
 
-const formatElement = e => {
-    e.replace("/\n/g", "<br/>")
-    if (commands.includes(e)) return <span style={{color: "orange"}}> {e} </span>;
-    if (isLength(e)) return <span style={{color: "cyan"}}> {e} </span>;
-    return <span> {e} </span>;
-}
+    const formatElement = (e, ind) => {
+        return commands[e] ? commands[e](e) : options[e] ? options[e](e) : isLength(e) ? isLength(e) : e[0] ? <span> { e } </span> : <br key={ ind }/> ;
+    }
+
+    const formatLine = (e, ind) => <CodeLine key={ ind } content={ e.split(/\s/).map(e => formatElement(e, ind)) }/>
 
     const getInnerContent = () => {
-        return content.split(" ").map(e => formatElement(e))
+        const values = content.split(/\n/);
+        if (textArea.current) {
+            textArea.current.cols = textArea.current.value.length;
+            textArea.current.rows = values.length;
+        }
+        return values.map((line, ind) => formatLine(line, ind));
     }
     
     return (
         <div className="code-area">
-            <textarea onChange={ e => setInnerContent(e.target.value) } placeholder={ useIntl().formatMessage({id:"codeview.placeholder"}) } spellcheck="false"></textarea>
+            <textarea ref={ textArea } onChange={ e => setInnerContent(e.target.value) } placeholder={ useIntl().formatMessage({id:"codeview.placeholder"}) } spellCheck="false"></textarea>
             <div id="code-visible">{ getInnerContent() }</div>
         </div>
     );
-}}
+}
 
 export default CodeArea;
+
+const CodeLine = ({ content }) => {
+    return (
+        <div className="codeview-line"> 
+            { content } 
+            <img className="newline themed-img" height="20" src={ require(`./codeview_newline.svg`).default } alt=""/>
+        </div>
+    );
+}

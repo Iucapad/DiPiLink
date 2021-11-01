@@ -54,8 +54,8 @@ class StatisticsView extends Component {
                     </div>
                     <div className="other">
                         <p className="stat-title"><FormattedMessage id={"stat.connection"}/><span className="val">{this.getHour()}</span></p>
-                        <p className="stat-title"><FormattedMessage id={"stat.session"}/><span className="val">{this.getTime(statsService.getTimer(true))}<img className="val" alt="" width="35" height="35" src={require("./session_time.svg").default}/></span></p>
-                        <p className="stat-title"><FormattedMessage id={"stat.input"}/><span className="val"><img className="val" alt="" width="35" height="35" src={require(`./input_${this.getPrefered()}.svg`).default}/></span></p>
+                        <p className="stat-title"><FormattedMessage id={"stat.session"}/><span className="val">{this.getTime(statsService.getTimer(true))}<img className="val themed-img" alt="" width="35" height="35" src={require("./session_time.svg").default}/></span></p>
+                        <p className="stat-title"><FormattedMessage id={"stat.input"}/><span className="val"><img className="val themed-img" alt="" width="35" height="35" src={require(`./input_${this.getPrefered()}.svg`).default}/></span></p>
                     </div>
                 </div>
             </div>
