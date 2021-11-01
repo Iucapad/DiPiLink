@@ -14,14 +14,14 @@ const UiCodeview = ({ visible }) => {
                 <CodeArea/>
             </div>
             <div className="uiCard">
-                <h3>Call stack</h3>
+                <h3><FormattedMessage id={ "codeview.actions_stack" }/></h3>
                 {codeviewService.stack.length > 0 ?
                 codeviewService.stack.map((item, i) => 
-                    <Action key={ i } action={ item }/>
+                    <Action key={ item } action={ item }/>
                 )
                 :
-                <p style={{ fontWeight: 100 }}>Start coding first</p>
-                 }
+                <p style={{ fontWeight: 100 }}><FormattedMessage id={ "codeview.empty_stack" }/></p>
+                }
 
             </div>
         </div>

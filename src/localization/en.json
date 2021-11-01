@@ -122,5 +122,7 @@
     "date.m":"{m} min",
     "codeview.editor": "Editor",
     "codeview.text": "With Codeview, you'll start coding your own moves",
-    "codeview.placeholder": "Hello World - Start writing some code here"
+    "codeview.placeholder": "Hello World - Start writing some code here",
+    "codeview.actions_stack": "Actions Stack",
+    "codeview.empty_stack": "Start coding first"
 }
