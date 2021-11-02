@@ -3,17 +3,40 @@ import { useIntl } from 'react-intl';
 import { codeviewService } from '../../../services/codeviewService';
 
 const commands = { 
-    "go": e => <span style={{color: "orange"}}> {e} </span>,
-    "pivot": e => <span style={{color: "orange"}}> {e} </span>,
-    "wait": e => <span style={{color: "orange"}}> {e} </span>
+    "go": e => <span style={{color: "orange"}}>{ e }</span>,
+    "pivot": e => <span style={{color: "orange"}}>{ e }</span>,
+    "wait": e => <span style={{color: "orange"}}>{ e }</span>
 };
 
-const options = { 
-    "left": e => <span style={{color: "plum"}}> {e} </span>,
-    "right": e => <span style={{color: "plum"}}> {e} </span>
+const options = {
+    "left": e => <span style={{color: "plum"}}>{ e }</span>,
+    "right": e => <span style={{color: "plum"}}>{ e }</span>,
+    "forward": e => <span style={{color: "plum"}}>{ e }</span>,
+    "backward": e => <span style={{color: "plum"}}>{ e }</span>,
 };
 
-const isLength = e => /^[0-9]\d*((\.\d)?)+s$/.test(e) && <span style={{color: "cyan"}}> {e} </span>;
+const keywords = {
+    "const": e => <span style={{color: "#6495ed"}}>{ e }</span>,
+    "var": e => <span style={{color: "#6495ed"}}>{ e }</span>,
+}
+
+const operators = {
+    "=": e => <span style={{color: "chocolate"}}>{ e }</span>,
+    "+": e => <span style={{color: "chocolate"}}>{ e }</span>,
+    "-": e => <span style={{color: "chocolate"}}>{ e }</span>,
+    "*": e => <span style={{color: "chocolate"}}>{ e }</span>,
+}
+
+const supported = {
+    ...commands,
+    ...options,
+    ...keywords,
+    ...operators
+}
+
+const isDegree = e => /^[0-9]\d*((\.\d)?)+deg$/.test(e) && <span style={{color: "plum"}}>{ e }</span>;
+
+const isLength = e => /^[0-9]\d*((\.\d)?)+s$/.test(e) && <span style={{color: "cyan"}}>{ e }</span>;
 
 const CodeArea = () => {
     const [content, setContent] = useState(codeviewService.editor);
@@ -29,17 +52,22 @@ const CodeArea = () => {
         }, 15);
         serviceTimeoutId = setTimeout(() => {
             codeviewService.setEditor(value);
-        }, 1000);
+        }, 1500);
     }
 
     const formatElement = (e, ind) => {
-        return commands[e] ? commands[e](e) : options[e] ? options[e](e) : isLength(e) ? isLength(e) : e[0] ? <span> { e } </span> : <br key={ ind }/> ;
+        console.log("element", e)
+        return supported[e] ? supported[e](e) : isLength(e) ? isLength(e) : isDegree(e) ? isDegree(e) : e === " " ? <span>&nbsp;</span> : <span>{ e }</span>;//TODO FIX HERE
     }
 
-    const formatLine = (e, ind) => <CodeLine key={ ind } content={ e.split(/\s/).map(e => formatElement(e, ind)) }/>
+    const formatLine = (e, ind) => {
+        console.log("line",e);
+        return <CodeLine key={ ind } content={ e.split(/(\s)/).map(e => e ? formatElement(e, ind) : e) }/>
+        }
 
     const getInnerContent = () => {
         const values = content.split(/\n/);
+        console.log("values",values);
         if (textArea.current) {
             textArea.current.cols = textArea.current.value.length;
             textArea.current.rows = values.length;
@@ -60,7 +88,7 @@ export default CodeArea;
 const CodeLine = ({ content }) => {
     return (
         <div className="codeview-line"> 
-            { content } 
+            { content }
             <img className="newline themed-img" height="20" src={ require(`./codeview_newline.svg`).default } alt=""/>
         </div>
     );

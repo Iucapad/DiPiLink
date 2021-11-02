@@ -37,7 +37,7 @@ class Api {
     }
     init = (s = appSettings.getAppValue("ssl") === "s") => {
         const hosts = appSettings.getAppValue("hosts");
-        const timeout = setTimeout(() => this.init(!s), 5000);
+        const timeout = undefined//setTimeout(() => this.init(!s), 5000);
         hosts.forEach(
             i => fetch(`http${s?"s":""}://${i.host}:${i.port}/api`).then(() => {
                 this.api = `${i.host}:${i.port}/api`;

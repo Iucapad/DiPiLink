@@ -25,7 +25,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      currentTab: "confTab",
+      currentTab: "codeviewTab",
       currentColor: "Surf",
       currentMode: "codeview",
       inputType: "default"

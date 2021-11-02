@@ -6,18 +6,22 @@ const commands = [
 
 const options = [
     "left",
-    "right"
+    "right",
+    "forward",
+    "backward"
 ];
+
+const isDegree = e => /^[0-9]\d*((\.\d)?)+deg$/.test(e)
 
 const isLength = e => /^[0-9]\d*((\.\d)?)+s$/.test(e);
 
 const builder = element => {
-    const resObj = {};
+    let resObj = {};
     element.split(/\s/).map(e => {
         if (commands.includes(e)) return resObj.command = e;
-        if (options.includes(e)) return resObj.option = e;
+        if (options.includes(e) || isDegree(e)) return resObj.option = e;
         if (isLength(e)) return resObj.length = e;
-        return null;
+        return resObj;
     });
     return resObj;
 }
@@ -29,7 +33,8 @@ class CodeviewService {
     }
 
     buildStack = () => {
-        this.codeStack = this.editorContent.split(/\n/).map(e => builder(e));
+        this.codeStack = this.editorContent.split(/\n/).map(e => builder(e)).filter(e => e.command && e.length);
+        document.dispatchEvent( new CustomEvent('codesync') );
     }
 
     setEditor = content => { 
