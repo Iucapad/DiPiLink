@@ -3,6 +3,7 @@ import React from 'react';
 const icons = {
     "pivot": require("./assets/cv_pivot.svg").default,
     "go": require("./assets/cv_go.svg").default,
+    "wait": require("./assets/cv_wait.svg").default,
 }
 
 const filters = {
