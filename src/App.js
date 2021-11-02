@@ -1,5 +1,5 @@
 import React, {lazy,Component,Suspense} from 'react';
-import {appSettings} from './services/clientService';
+import { appSettings, WEB } from './services/clientService';
 import {gpconnector} from './services/gamepadConnector';
 import {kbconnector} from './services/keyboardConnector';
 import {applyColor} from './services/colors';
@@ -25,9 +25,9 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      currentTab: "confTab",
+      currentTab: WEB ? "codeviewTab" : "confTab",
       currentColor: "Surf",
-      currentMode: "codeview",
+      currentMode: WEB ? "codeview" : "default",
       inputType: "default"
     };
   }

@@ -20,6 +20,16 @@
   50% {transform: unset;}
   100% {opacity:var(--opac1);}
 }
+@keyframes opacityAppear{
+  0% {opacity:0;}
+  40% {opacity:0;}
+  100% {opacity:var(--opac1);}
+}
+@keyframes stackAppear{
+  0% {opacity:0;transform: scale(0.9); max-height: 0;}
+  50% {opacity:0;transform: scale(0.9); max-height: 100px;}
+  100% {opacity:var(--opac1);transform: scale(1); max-height: 100px;}
+}
 @keyframes imgAppear{
   0% {opacity:0;}
   30% {opacity:0;filter:drop-shadow(0 0 10px var(--color-grey));transform: translateY(30px);}
@@ -35,12 +45,16 @@
   50%{opacity:var(--opac1);}
   100% {max-height:100vh;}
 }
+@keyframes width{
+  0% {max-width:0;}
+  100% {max-width:10vw;}
+}
 @keyframes carAppear{
   0% {opacity:0; display:none;}
-  100% {opacity:var(--opac1);display:block;}
+  100% {opacity:var(--opac1); display:block;}
 }
 @keyframes disappear{
-  0% {opacity:var(--opac1);display:block;}
+  0% {opacity:var(--opac1); display:block;}
   100% {opacity:0; display:none;}
 }
 ::selection {
@@ -66,6 +80,34 @@ body{
   -webkit-user-select:none;  
   -webkit-touch-callout:none;
   background:transparent;
+}
+.align-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.badge {
+  position: absolute;
+  inset: auto -9px -6px auto;
+  animation: opacityAppear 2s;
+  background: linear-gradient(45deg, #333333A0 40%, #888888A0);
+  color: white;
+  border-radius: 100px;
+  min-height: 22px;
+  min-width: 22px;
+  padding: 2px;
+}
+.action-btn {
+  background: #00000040;
+  color: white;
+  border-radius: 8px;
+  padding: 0.4em 0.6em;
+}
+.action-btn.active {
+  background: #FFFFF4A0;
+}
+.nowrap {
+  white-space: nowrap;
 }
 .cover{
   margin:0;

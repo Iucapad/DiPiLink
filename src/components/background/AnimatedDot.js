@@ -1,7 +1,3 @@
-import React from 'react';
-const AnimatedDot=(props)=>{
-    return(
-        <div style={props.style}/>
-    );
-};
+const AnimatedDot = ({ style }) => <div style={ style }/>
+
 export default AnimatedDot;

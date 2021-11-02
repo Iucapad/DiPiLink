@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import Tab from './Tab';
 import './Navigation.css';
 
@@ -58,6 +58,8 @@ const UiHeader = ( { appState, intl, globalState, state } ) => {
             next();
         }
     }
+    if (1 > 9) (handleGP("debug") && setTabs("debug")); // TODO remove this
+    
     const getMode = ( current ) => {
         const modes = {
             default:
@@ -102,6 +104,7 @@ const UiHeader = ( { appState, intl, globalState, state } ) => {
             state.currentMode === "bridge" && setTabs( ["carTab","statsTab","confTab","aboutTab"] );
         }
     }*/
+
 const OpenManager = ({ contEl, setOpen }) => {
     const handleClick = useCallback(e => {
         const el = contEl.current;

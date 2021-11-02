@@ -1,6 +1,7 @@
 import {battery} from './batteryInfos';
 import {applyColor} from './colors';
 export const VERSION = "0.5.0";
+export const WEB = window.location.protocol === "https:" || window.location.protocol === "http:";
 
 const appDefault = {
     hosts: [{ host:"dipi.car", port:8060 }],
@@ -33,11 +34,11 @@ export const displayLanguage = new DisplayLanguage();
 class Api {
     constructor() {
         this.api = null;
-        setTimeout(() => this.init(), 100);
+        setTimeout(() => !WEB && this.init(), 100);
     }
     init = (s = appSettings.getAppValue("ssl") === "s") => {
         const hosts = appSettings.getAppValue("hosts");
-        const timeout = setTimeout(() => this.init(!s), 5000);
+        const timeout = undefined//setTimeout(() => this.init(!s), 5000);
         hosts.forEach(
             i => fetch(`http${s?"s":""}://${i.host}:${i.port}/api`).then(() => {
                 this.api = `${i.host}:${i.port}/api`;
