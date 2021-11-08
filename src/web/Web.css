@@ -1,0 +1,41 @@
+@keyframes webAppear{
+  0% {opacity:0;}
+  90% {opacity:0;}
+  100% {opacity:var(--opac1);}
+}
+@keyframes logoAppear{
+  0% {opacity:0; transform: translate(-50%, 50%);}
+  40% {transform: translate(-50%, -50%);}
+  90% {opacity: var(--opac1); transform: translate(-50%, -65%);}
+  100% {opacity: 0;}
+}
+@keyframes imgMove {
+  0% {transform: translate(50%, -50%);}
+  40% {transform: translate(50%, -50%);}
+  100% {transform: translate(0, 0);}
+}
+@keyframes spanMove {
+  0% {opacity: 0; transform: translate(-50%, 0);}
+  50% {opacity: 0; transform: translate(-50%, 0);}
+  100% {opacity: 1; transform: translate(0, 0);}
+}
+.views {
+  display: block !important;
+  animation: webAppear 5s;
+}
+.webLogo {
+  z-index: 900;
+  position: fixed;
+  animation: logoAppear 4s forwards;
+  top: 50vh;
+  left: 50vw;
+  transform: translate(-50%, -50%);
+}
+.webLogo img {
+  animation: imgMove 2s forwards;
+}
+.webLogo span {
+  font-weight: bold;
+  font-family: monospace;
+  animation: spanMove 2s forwards;
+}

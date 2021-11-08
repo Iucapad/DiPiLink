@@ -1,8 +1,12 @@
-# Codeview documentation
+# Discover Codeview
 
 ## Introduction
 
-Codeview has been made to allow users to interact with the car by coding directly its movements. Anyone can become developer!
+Codeview has been made to allow users to interact with the car by coding its movements. Anyone can become developer!
+
+## Usage
+
+You can access the Codeview editor from the application directly. You don't need to be connected to a device to start using it. You can simply write your scripts locally and save them for a later use. Go to the home page of the app and choose the Codeview option, or visit the web version of the editor available online [here](https://dipilink.netlify.app).
 
 ## Actions
 

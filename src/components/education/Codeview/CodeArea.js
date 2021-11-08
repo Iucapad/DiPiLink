@@ -55,19 +55,16 @@ const CodeArea = () => {
         }, 1500);
     }
 
-    const formatElement = (e, ind) => {
-        console.log("element", e)
+    const formatElement = (e) => {
         return supported[e] ? supported[e](e) : isLength(e) ? isLength(e) : isDegree(e) ? isDegree(e) : e === " " ? <span>&nbsp;</span> : <span>{ e }</span>;//TODO FIX HERE
     }
 
     const formatLine = (e, ind) => {
-        console.log("line",e);
         return <CodeLine key={ ind } content={ e.split(/(\s)/).map(e => e ? formatElement(e, ind) : e) }/>
         }
 
     const getInnerContent = () => {
         const values = content.split(/\n/);
-        console.log("values",values);
         if (textArea.current) {
             textArea.current.cols = textArea.current.value.length;
             textArea.current.rows = values.length;

@@ -5,6 +5,7 @@
     100% {filter: none;}
 }
 header{
+    animation: opacityAppear 1s;
     transition:margin 0.25s;
     padding-top: var(--offsetTop);
     top: 0;

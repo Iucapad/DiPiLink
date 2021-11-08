@@ -58,6 +58,8 @@ const UiHeader = ( { appState, intl, globalState, state } ) => {
             next();
         }
     }
+    if (1 > 9) (handleGP("debug") && setTabs("debug")); // TODO remove this
+    
     const getMode = ( current ) => {
         const modes = {
             default:
@@ -102,6 +104,7 @@ const UiHeader = ( { appState, intl, globalState, state } ) => {
             state.currentMode === "bridge" && setTabs( ["carTab","statsTab","confTab","aboutTab"] );
         }
     }*/
+
 const OpenManager = ({ contEl, setOpen }) => {
     const handleClick = useCallback(e => {
         const el = contEl.current;

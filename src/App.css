@@ -81,6 +81,9 @@ body{
   -webkit-touch-callout:none;
   background:transparent;
 }
+.views {
+  overflow: hidden;
+}
 .align-center {
   display: flex;
   align-items: center;

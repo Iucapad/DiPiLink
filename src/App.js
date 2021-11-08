@@ -1,5 +1,5 @@
 import React, {lazy,Component,Suspense} from 'react';
-import {appSettings} from './services/clientService';
+import { appSettings, WEB } from './services/clientService';
 import {gpconnector} from './services/gamepadConnector';
 import {kbconnector} from './services/keyboardConnector';
 import {applyColor} from './services/colors';
@@ -19,15 +19,16 @@ import { Button, Dialog, DialogActions, DialogContent, DialogContentText, Dialog
 const CarView = lazy(() => import('./components/carView/CarView'));
 const StatisticsView = lazy(() => import('./components/statistics/StatisticsView'));
 const CapableTheme = lazy(() => import('./capable/Capable'));
+const WEBStyles = lazy(() => import('./web/Web'));
 const devCapable = appSettings.getAppValue("devCapable");
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      currentTab: "codeviewTab",
+      currentTab: WEB ? "codeviewTab" : "confTab",
       currentColor: "Surf",
-      currentMode: "codeview",
+      currentMode: WEB ? "codeview" : "default",
       inputType: "default"
     };
   }
@@ -110,21 +111,27 @@ class App extends Component {
   render(){
     return (
       <>
-      {devCapable?
+      {devCapable ?
       <Suspense fallback={null}>
-      <><CapableTheme></CapableTheme>
-      </>
+      <CapableTheme/>
+    </Suspense>:null
+    }
+    {WEB ?
+      <Suspense fallback={null}>
+      <WEBStyles/>
     </Suspense>:null
     }
       {this.getError()}
       <Header state={this.state} appState={this.setState.bind(this)}/>
-      <AnimatedBackground tab={this.state.currentTab}/>      
-      {this.getContent()}
-      <div className="slideView" id="confView" style={(this.state.currentTab==="confTab")?{display:'grid'}:{display:'none'}}>
-        { !localStorage.getItem("dpl_appSettings") && <HowToPage/> }
-        <Slideview state={this.state} appState={this.setState.bind(this)} onLoad="loadView()"/>
+      <AnimatedBackground tab={this.state.currentTab}/>   
+      <div className="views" style={WEB && {display: "none"}}>   
+        {this.getContent()}
+        <div className="slideView" id="confView" style={(this.state.currentTab==="confTab")?{display:'grid'}:{display:'none'}}>
+          { !localStorage.getItem("dpl_appSettings") && <HowToPage/> }
+          <Slideview state={this.state} appState={this.setState.bind(this)} onLoad="loadView()"/>
+        </div>
+        <Aboutview visible={(this.state.currentTab==="aboutTab")?{display:'grid'}:{display:'none'}}/>
       </div>
-      <Aboutview visible={(this.state.currentTab==="aboutTab")?{display:'grid'}:{display:'none'}}/>
       </>
     );
   }

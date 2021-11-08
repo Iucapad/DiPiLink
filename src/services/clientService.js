@@ -1,6 +1,18 @@
 import {battery} from './batteryInfos';
 import {applyColor} from './colors';
 export const VERSION = "0.5.0";
+export const WEB = true//window.location.hostname.includes("dipilink");
+
+const loadWeb = (src) => {
+    const link = document.createElement('link');
+    link.id = 'favicon';
+    link.rel = 'icon';
+    link.href = `./favicon_${src}.png`;
+    document.head.removeChild(document.getElementById('favicon'));
+    document.head.appendChild(link);
+    document.title = "Codeview";
+   }
+WEB && loadWeb("web");
 
 const appDefault = {
     hosts: [{ host:"dipi.car", port:8060 }],
@@ -33,7 +45,7 @@ export const displayLanguage = new DisplayLanguage();
 class Api {
     constructor() {
         this.api = null;
-        setTimeout(() => this.init(), 100);
+        setTimeout(() => !WEB && this.init(), 100);
     }
     init = (s = appSettings.getAppValue("ssl") === "s") => {
         const hosts = appSettings.getAppValue("hosts");
