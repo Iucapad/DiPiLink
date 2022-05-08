@@ -1,10 +1,15 @@
-import React, {Component} from 'react';
-import {statsService} from '../../services/statsService';
+import React, { Component } from 'react';
+import sessionTime from "./session_time.svg";
+import { statsService } from '../../services/statsService';
 import LicenseStatus from './licenseStatus/licenseStatus';
-
 import { withGlobalState } from 'react-globally';
-import {injectIntl, FormattedMessage} from 'react-intl';
+import { injectIntl, FormattedMessage } from 'react-intl';
 import './statistics.css';
+
+import input_default from "./input_default.svg";
+import input_gamepad from "./input_gamepad.svg";
+import input_touch from "./input_touch.svg";
+const img = { input_default, input_gamepad, input_touch };
 
 class StatisticsView extends Component {
     constructor(props){
@@ -54,8 +59,8 @@ class StatisticsView extends Component {
                     </div>
                     <div className="other">
                         <p className="stat-title"><FormattedMessage id={"stat.connection"}/><span className="val">{this.getHour()}</span></p>
-                        <p className="stat-title"><FormattedMessage id={"stat.session"}/><span className="val">{this.getTime(statsService.getTimer(true))}<img className="val themed-img" alt="" width="35" height="35" src={require("./session_time.svg").default}/></span></p>
-                        <p className="stat-title"><FormattedMessage id={"stat.input"}/><span className="val"><img className="val themed-img" alt="" width="35" height="35" src={require(`./input_${this.getPrefered()}.svg`).default}/></span></p>
+                        <p className="stat-title"><FormattedMessage id={"stat.session"}/><span className="val">{this.getTime(statsService.getTimer(true))}<img className="val themed-img" alt="" width="35" height="35" src={sessionTime}/></span></p>
+                        <p className="stat-title"><FormattedMessage id={"stat.input"}/><span className="val"><img className="val themed-img" alt="" width="35" height="35" src={ img[this.getPrefered()] }/></span></p>
                     </div>
                 </div>
             </div>

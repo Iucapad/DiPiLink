@@ -1,4 +1,5 @@
-import { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
+import saveIcon from "./assets/cv_save.svg";
 //import { filesService } from "../../../services/filesService";
 
 const FileSave = () => {
@@ -25,7 +26,7 @@ const FileSave = () => {
 
     return (
         <div className={`filesave align-center action-btn ${active ? "active" : ""}`}>
-            <img alt="Save" height="40px" src={ require("./assets/cv_save.svg").default }/>
+            <img alt="Save" height="40" src={ saveIcon }/>
             {
                 active && <span className="nowrap">+ s</span>
             }

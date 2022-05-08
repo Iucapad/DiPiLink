@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {React, useState} from 'react';
 import {appSettings} from '../../../services/clientService';
 import {FormattedMessage} from 'react-intl';
 import './keyboardControls.css';

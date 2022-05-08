@@ -1,10 +1,11 @@
 import React from 'react';
 import './licenseStatus.css';
+import rank1 from "./rank_1.svg";
+import rank0 from "./rank_0.svg";
 
 const LicenseStatus = ({level}) => {
     const getItem = () => {
-        if (level > 10) return require("./rank_1.svg").default;
-        return require("./rank_0.svg").default;
+        return (level > 10) ? rank1 : rank0;
     }
     return(
         <img className="status-container" alt="" width="120" height="120" src={getItem()}/>

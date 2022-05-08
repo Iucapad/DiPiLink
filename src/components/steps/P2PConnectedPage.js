@@ -11,13 +11,13 @@ const P2PConnectedPage =({intl,confState}) => {
                 <h1><FormattedMessage id={"title.home_1"}/></h1>
                 <p><FormattedMessage id={"text.home_1"} values={{rtn:<br/>}}/></p>
                 <div id="focusableElements">
-                    <Button class="checkHost" confState={confState} text={intl.formatMessage({id:"btn.p2p"})} value="p2pMode" img="direct.png" ind="1"/>
-                    {isLocalModeAvailable && <Button class="checkConfig" confState={confState} text={intl.formatMessage({id:"btn.local"})} value="next" img="network.png" ind="1"/>}
+                    <Button class="checkHost" confState={confState} text={intl.formatMessage({id:"btn.p2p"})} value="p2pMode" img="direct" ind="1"/>
+                    {isLocalModeAvailable && <Button class="checkConfig" confState={confState} text={intl.formatMessage({id:"btn.local"})} value="next" img="network" ind="1"/>}
                 </div>
                 {!isLocalModeAvailable && 
                 <>
                 <p><FormattedMessage id={"text.localModeNotAvailable"}/></p>
-                <Button onClick={()=>window.open(`https://dipihub.netlify.com/${displayLanguage.get()}/#/docs`)} text={intl.formatMessage({id:"btn.oobe"})}></Button>
+                <Button onClick={()=>window.open(`https://saison.one/dipihub/${displayLanguage.get()}/#/docs`)} text={intl.formatMessage({id:"btn.oobe"})}></Button>
                 </>
                 }
             </div>

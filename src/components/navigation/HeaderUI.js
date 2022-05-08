@@ -1,7 +1,6 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import Tab from './Tab';
 import './Navigation.css';
-
 import { withGlobalState } from 'react-globally';
 import { injectIntl } from 'react-intl';
 

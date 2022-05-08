@@ -1,5 +1,7 @@
+import React from "react";
 import HowToPage from './steps/HowToPage';
 import { VERSION } from '../services/clientService';
+import dipilinkIcon from "../assets/dipilink.png";
 
 const UiAboutview = ({ visible }) => {
     return(
@@ -7,7 +9,7 @@ const UiAboutview = ({ visible }) => {
             <div className="uiCard">
                 <h1>A propos du projet</h1>
                 <p>Le montage du véhicule ainsi que la création de l'application ont été réalisés par Nicolas Jeuniaux et Luca Vitali en temps que travail de fin d'études à la Haute école en Hainaut.</p>
-                <img className="about-img" src={ require(`../assets/dipilink.png`).default } alt="<img>"/>
+                <img className="about-img" src={ dipilinkIcon } alt="<img>"/>
                 <p>Icônes et illustrations : Rémy Jeuniaux</p>
             </div>
             <HowToPage/>

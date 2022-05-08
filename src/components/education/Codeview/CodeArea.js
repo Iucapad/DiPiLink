@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { codeviewService } from '../../../services/codeviewService';
+import newlineIcon from "./codeview_newline.svg";
 
 const commands = { 
     "go": e => <span style={{color: "orange"}}>{ e }</span>,
@@ -86,7 +87,7 @@ const CodeLine = ({ content }) => {
     return (
         <div className="codeview-line"> 
             { content }
-            <img className="newline themed-img" height="20" src={ require(`./codeview_newline.svg`).default } alt=""/>
+            <img className="newline themed-img" height="20" src={ newlineIcon } alt=""/>
         </div>
     );
 }

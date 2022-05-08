@@ -1,7 +1,12 @@
+import React from 'react';
+import pivot from "./assets/cv_pivot.svg";
+import go from "./assets/cv_go.svg";
+import wait from "./assets/cv_wait.svg";
+
 const icons = {
-    "pivot": require("./assets/cv_pivot.svg").default,
-    "go": require("./assets/cv_go.svg").default,
-    "wait": require("./assets/cv_wait.svg").default,
+    pivot: pivot,
+    go: go,
+    wait: wait,
 }
 
 const filters = {

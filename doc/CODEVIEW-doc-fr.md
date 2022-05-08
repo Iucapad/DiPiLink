@@ -6,7 +6,7 @@ Codeview a été conçu pour permettre aux utilisateurs d'intéragir avec la voi
 
 ## Utilisation
 
-L'éditeur Codeview est accessible depuis l'application directement. Vous n'avez pas besoin d'être connecté à un véhicule pour l'utiliser. Vous pouvez tout simplement prendre le temps d'écrire vos scripts localement puis les exécuter plus tard. Allez juste sur l'accueil de l'application et sélectionnez l'option Codeview, ou accédez à la version web de l'éditeur en ligne [ici](https://dipilink.netlify.app).
+L'éditeur Codeview est accessible depuis l'application directement. Vous n'avez pas besoin d'être connecté à un véhicule pour l'utiliser. Vous pouvez tout simplement prendre le temps d'écrire vos scripts localement puis les exécuter plus tard. Allez juste sur l'accueil de l'application et sélectionnez l'option Codeview, ou accédez à la version web de l'éditeur en ligne [ici](https://saison.one/apps/dipilink).
 
 ## Actions
 

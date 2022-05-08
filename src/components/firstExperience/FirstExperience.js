@@ -3,14 +3,14 @@ import {FormattedMessage} from 'react-intl';
 import {appSettings} from '../../services/clientService';
 import LicenseStatus from '../statistics/licenseStatus/licenseStatus';
 import './firstExperience.css';
+import asset from "./asset.svg";
+import asset2 from "./asset2.svg";
+import asset3 from "./asset3.svg";
+import license from "./license.svg";
+import gamepad from "./gamepad.svg";
+import touch from "./touch.svg";
+import dflt from "./default.svg";
 
-const asset = require("./asset.svg").default;
-const asset2 = require("./asset2.svg").default;
-const asset3 = require("./asset3.svg").default;
-const license = require("./license.svg").default;
-const gamepad = require("./gamepad.svg").default;
-const touch = require("./touch.svg").default;
-const dflt = require("./default.svg").default;
 const controls = appSettings.getAppValue("kbLayout");
 
 export default class FirstExperience extends Component{
